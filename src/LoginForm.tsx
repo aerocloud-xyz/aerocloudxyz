@@ -6,12 +6,14 @@ import {
   EuiFormRow,
   EuiButton,
   EuiSpacer,
-  EuiIcon,
   EuiFieldPassword,
 } from '@elastic/eui';
 import './LoginForm.css'; // Import your custom CSS file
 
-const LoginForm = () => {
+interface LoginFormProps {
+  onLogin: () => void;
+}
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,24 +22,8 @@ const LoginForm = () => {
     // For demonstration purposes, let's just log the entered values
     console.log('Email:', email);
     console.log('Password:', password);
-    const formData = new URLSearchParams();
-    formData.append('username', 'myUsername');
-    formData.append('password', 'myPassword');
-    
-    fetch('https://example.com/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: formData.toString(),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+
+    onLogin();
   };
 
   return (

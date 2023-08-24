@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import {
   EuiAvatar,
-  EuiBadge,
   EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
@@ -12,8 +11,6 @@ import {
   EuiFlyoutHeader,
   EuiHeader,
   EuiHeaderAlert,
-  EuiHeaderLogo,
-  EuiHeaderProps,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
@@ -31,6 +28,8 @@ import {
 } from '@elastic/eui';
 import alerts from './alerts';
 import LoginForm from './LoginForm';
+import UserData from './UserData';
+
 const HeaderUpdates = () => {
   const { euiTheme } = useEuiTheme();
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
@@ -226,7 +225,15 @@ const HeaderUserMenu = () => {
     </EuiPopover>
   );
 };
+
 export default () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleLogin = () => {
+  // Implement your actual login logic here
+  // Assuming login is successful, update the login state
+    setIsLoggedIn(true);
+  };
+
   return (
     <>
       <EuiSpacer />
@@ -246,8 +253,7 @@ export default () => {
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
-      
-      <LoginForm/>
+      {isLoggedIn ? <UserData onLogin='test' /> : <LoginForm onLogin={handleLogin} />}
     </>
   );
 };
