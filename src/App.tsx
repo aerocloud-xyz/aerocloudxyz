@@ -167,9 +167,16 @@ const HeaderUpdates = () => {
     </>
   );
 };
-const HeaderUserMenu = () => {
+interface HeaderUserMenuProps {
+  username: string;
+  updateUser: () => void;
+}
+const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({ username, updateUser }) => {
   const userPopoverId = useGeneratedHtmlId({ prefix: 'userPopover' });
   const [isOpen, setIsOpen] = useState(false);
+  const onLogout = () => {
+    console.log('Logout');
+  };
   const onMenuButtonClick = () => {
     setIsOpen(!isOpen);
   };
@@ -184,7 +191,7 @@ const HeaderUserMenu = () => {
       aria-label="Account menu"
       onClick={onMenuButtonClick}
     >
-      <EuiAvatar name="John Username" size="s" />
+      <EuiAvatar name={username} size="s" />
     </EuiHeaderSectionItemButton>
   );
   return (
@@ -200,22 +207,19 @@ const HeaderUserMenu = () => {
       <div style={{ width: 300 }}>
         <EuiFlexGroup gutterSize="m" responsive={false}>
           <EuiFlexItem grow={false}>
-            <EuiAvatar name="John Username" size="xl" />
+            <EuiAvatar name={username} size="xl" />
           </EuiFlexItem>
           <EuiFlexItem>
             <EuiText>
-              <p>John Username</p>
+              <p>{username}</p>
             </EuiText>
             <EuiSpacer size="m" />
             <EuiFlexGroup>
               <EuiFlexItem>
                 <EuiFlexGroup justifyContent="spaceBetween">
-                  <EuiFlexItem grow={false}>
-                    <EuiLink>Edit profile</EuiLink>
-                  </EuiFlexItem>
-                  <EuiFlexItem grow={false}>
-                    <EuiLink>Log out</EuiLink>
-                  </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                    <EuiLink onClick={onLogout}>Log out</EuiLink>
+                </EuiFlexItem>
                 </EuiFlexGroup>
               </EuiFlexItem>
             </EuiFlexGroup>
@@ -228,10 +232,20 @@ const HeaderUserMenu = () => {
 
 export default () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleLogin = () => {
-  // Implement your actual login logic here
-  // Assuming login is successful, update the login state
+  const [updatedName, setUpdatedName] = useState('');
+  const [Username, setUsername] = useState('Not Logged In');
+
+  const handleNameChange = (newName: string) => {
+    setUpdatedName(newName);
+  };
+  const updateUsername = () => {
+    setUsername(updatedName);
+  };
+  const handleLogin = (email: string, password: string) => {
+
+    handleNameChange(email);
     setIsLoggedIn(true);
+    setUsername(email);
   };
 
   return (
@@ -248,12 +262,13 @@ export default () => {
             <HeaderUpdates />
           </EuiHeaderSectionItem>
           <EuiHeaderSectionItem>
-            <HeaderUserMenu />
+            <HeaderUserMenu username={Username} updateUser={updateUsername}/>
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
       {isLoggedIn ? <UserData onLogin='test' /> : <LoginForm onLogin={handleLogin} />}
+      <EuiSpacer />
     </>
   );
 };

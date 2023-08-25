@@ -1,32 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  EuiAvatar,
   EuiBadge,
-  EuiButtonEmpty,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiFlyout,
-  EuiFlyoutBody,
-  EuiFlyoutFooter,
-  EuiFlyoutHeader,
-  EuiHeader,
-  EuiHeaderAlert,
-  EuiHeaderLogo,
-  EuiHeaderProps,
-  EuiHeaderSection,
-  EuiHeaderSectionItem,
-  EuiHeaderSectionItemButton,
-  EuiIcon,
   EuiLink,
-  EuiPopover,
-  EuiPopoverFooter,
-  EuiPopoverTitle,
-  EuiPortal,
-  EuiSpacer,
-  EuiText,
-  EuiTitle,
-  useGeneratedHtmlId,
-  useEuiTheme,
 } from '@elastic/eui';
 
 const alerts = [
