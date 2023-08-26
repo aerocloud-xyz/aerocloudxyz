@@ -11,7 +11,7 @@ import {
 import './LoginForm.css'; // Import your custom CSS file
 
 interface LoginFormProps {
-  onLogin: (email: string, username: string) => void;
+  onLogin: (email: string, name: string, dateOfCreation: string) => void;
 }
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -44,9 +44,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       });
   
       if (response.ok) {
-        // Login successful
-        console.log(response.text);
-        onLogin(email, password);
+        // Parse the JSON data from the response
+        const accountData = await response.json();
+        // Now you can access accountData properties
+        const dateofcreation = accountData.user.date;
+        const name = accountData.user.name;
+
+        onLogin(email, name, dateofcreation);
       } else {
         // Handle error response
         setError('Login failed, check username and password');

@@ -235,17 +235,27 @@ export default () => {
   const [updatedName, setUpdatedName] = useState('');
   const [Username, setUsername] = useState('Not Logged In');
 
+  //UserData
+  const [email, setEmail] = useState('');
+  const [date, setDate] = useState('');
+  const [name, setName] = useState('');
+
   const handleNameChange = (newName: string) => {
     setUpdatedName(newName);
   };
   const updateUsername = () => {
     setUsername(updatedName);
   };
-  const handleLogin = (email: string, password: string) => {
-
+  const handleLogin = (email: string, name: string, dateOfCreation: string) => {
+    //handling UI changes
     handleNameChange(email);
     setIsLoggedIn(true);
-    setUsername(email);
+    setUsername(name);
+
+    //handling setting the variables for <UserData/>
+    setEmail(email);
+    setDate(dateOfCreation);
+    setName(name);
   };
 
   return (
@@ -267,7 +277,7 @@ export default () => {
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
-      {isLoggedIn ? <UserData onLogin='test' /> : <LoginForm onLogin={handleLogin} />}
+      {isLoggedIn ? <UserData emailAddress={email} name={name} date={date}/> : <LoginForm onLogin={handleLogin} />}
       <EuiSpacer />
     </>
   );

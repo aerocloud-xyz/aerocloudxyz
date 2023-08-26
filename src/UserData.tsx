@@ -1,14 +1,35 @@
 import React from 'react';
-import { EuiText } from '@elastic/eui';
+import { EuiText, EuiSplitPanel, EuiAvatar, EuiTextAlign, EuiCode, EuiButton } from '@elastic/eui';
+
 
 interface UserDataProps {
-    onLogin: string;
+    emailAddress: string;
+    name: string;
+    date: string;
   }
-  const UserData: React.FC<UserDataProps> = ({ onLogin }) => {
+  const UserData: React.FC<UserDataProps> = ({ emailAddress, name, date }) => {
     return (
+      <EuiSplitPanel.Outer direction="column">
+      <EuiSplitPanel.Inner>
         <EuiText>
-            <h1>{onLogin}</h1>
+          <p>Email: {emailAddress}</p>
+          <p>Account creation date: {date}</p>
+          <p>Name: {name}</p>
         </EuiText>
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner grow={false} color="subdued">
+        <EuiTextAlign textAlign='center'>
+          <EuiButton
+              color='primary'
+              isDisabled={false}
+              onClick={() => {}}
+              fill
+            >
+              Logout
+          </EuiButton>
+        </EuiTextAlign> 
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
         
     );
   };
