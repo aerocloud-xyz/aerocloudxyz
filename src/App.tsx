@@ -29,6 +29,7 @@ import {
 import alerts from './alerts';
 import LoginForm from './LoginForm';
 import UserData from './UserData';
+import Metrics from './metrics'
 
 const HeaderUpdates = () => {
   const { euiTheme } = useEuiTheme();
@@ -279,6 +280,8 @@ export default () => {
       <EuiSpacer />
       {isLoggedIn ? <UserData emailAddress={email} name={name} date={date}/> : <LoginForm onLogin={handleLogin} />}
       <EuiSpacer />
+      <EuiSpacer size='xs' />
+      <Metrics updateMetrics={console.log('teste')} />
     </>
   );
 };
