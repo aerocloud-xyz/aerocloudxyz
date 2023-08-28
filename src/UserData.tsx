@@ -1,5 +1,5 @@
 import React from 'react';
-import { EuiText, EuiSplitPanel, EuiAvatar, EuiTextAlign, EuiCode, EuiButton } from '@elastic/eui';
+import { EuiText, EuiSplitPanel, EuiTextAlign, EuiButton } from '@elastic/eui';
 
 
 interface UserDataProps {
