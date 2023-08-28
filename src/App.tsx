@@ -281,7 +281,7 @@ export default () => {
       {isLoggedIn ? <UserData emailAddress={email} name={name} date={date}/> : <LoginForm onLogin={handleLogin} />}
       <EuiSpacer />
       <EuiSpacer size='xs' />
-      <Metrics updateMetrics={console.log('teste')} />
+      <Metrics />
     </>
   );
 };
