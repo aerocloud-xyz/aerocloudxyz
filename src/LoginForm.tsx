@@ -9,7 +9,7 @@ import {
   EuiFieldPassword,
 } from '@elastic/eui';
 import './LoginForm.css'; // Import your custom CSS file
-
+import { AUTH_API } from './constants';
 interface LoginFormProps {
   onLogin: (email: string, name: string, dateOfCreation: string) => void;
 }
@@ -35,7 +35,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
   //Make the request
     try {
-      const response = await fetch('http://localhost:3001/users/login', {
+      const response = await fetch(AUTH_API + '/login', {
         method: 'POST',
         body: formData,
         headers: {
@@ -49,6 +49,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         // Now you can access accountData properties
         const dateofcreation = accountData.user.date;
         const name = accountData.user.name;
+        // Add the authentication token to local storage
+        localStorage.setItem('usertoken', accountData.token);
 
         onLogin(email, name, dateofcreation);
       } else {

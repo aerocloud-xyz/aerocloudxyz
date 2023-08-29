@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '@elastic/eui/dist/eui_theme_dark.css';
 import { EuiSpacer, EuiHealth, EuiSplitPanel, EuiText, EuiButton } from '@elastic/eui'
+import { AUTH_API } from './constants';
 interface MetricsProps {
 };
 const Metrics: React.FC<MetricsProps> = () => {
@@ -10,7 +11,7 @@ const Metrics: React.FC<MetricsProps> = () => {
     const updateMetrics = async () => {
         //Auth API
         try {
-            const response = await fetch('http://localhost:3001/users/api');
+            const response = await fetch(AUTH_API + '/api');
             if (response.ok) {
                 setAuthApiStatus("success")
             }
