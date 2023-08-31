@@ -26,10 +26,12 @@ import {
   useGeneratedHtmlId,
   useEuiTheme,
 } from '@elastic/eui';
+
 import alerts from './alerts';
 import LoginForm from './LoginForm';
 import UserData from './UserData';
 import Metrics from './metrics'
+import RegisterForm from './RegisterForm'
 
 const HeaderUpdates = () => {
   const { euiTheme } = useEuiTheme();
@@ -231,6 +233,7 @@ const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({ username, updateUser })
 
 export default () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
   const [updatedName, setUpdatedName] = useState('');
   const [Username, setUsername] = useState('Not Logged In');
 
@@ -239,6 +242,10 @@ export default () => {
   const [date, setDate] = useState('');
   const [name, setName] = useState('');
 
+  const handleLoadingRegisterForm = () => {
+    console.log('Opening register form');
+    setIsRegistered(true);
+  };
   const handleNameChange = (newName: string) => {
     setUpdatedName(newName);
   };
@@ -275,10 +282,13 @@ export default () => {
           <EuiHeaderSectionItem>
             <HeaderUserMenu username={Username} updateUser={updateUsername}/>
           </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
+
+          </EuiHeaderSectionItem>
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
-      {isLoggedIn ? <UserData emailAddress={email} name={name} date={date}/> : <LoginForm onLogin={handleLogin} />}
+    {isLoggedIn ? <UserData emailAddress={email} name={name} date={date} /> : <div> {isRegistered ? <RegisterForm /> : <LoginForm onLogin={handleLogin} onRegister={handleLoadingRegisterForm}/>}</div>}
       <EuiSpacer />
       <EuiSpacer size='xs' />
       <Metrics />

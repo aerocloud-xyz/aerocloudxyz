@@ -7,13 +7,15 @@ import {
   EuiButton,
   EuiSpacer,
   EuiFieldPassword,
+  EuiLink,
 } from '@elastic/eui';
 import './LoginForm.css'; // Import your custom CSS file
 import { AUTH_API } from './constants';
 interface LoginFormProps {
   onLogin: (email: string, name: string, dateOfCreation: string) => void;
-}
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+  onRegister: () => void;
+} 
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -98,6 +100,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         </EuiButton>
         <div className="register">
           <a href="/register">Forgot password?</a>
+          <EuiLink onClick={onRegister}>Don't have an account? Register!</EuiLink>
         </div>
       </EuiForm>
     </div>

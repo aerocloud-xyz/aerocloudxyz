@@ -1,0 +1,28 @@
+.register-form-container {
+    max-width: 350px;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #1D1E24;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .error-message {
+    background-color: #ff8383;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .register-header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #ffff;
+  }
+  
