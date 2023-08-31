@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   EuiAvatar,
   EuiButtonEmpty,
@@ -95,7 +95,6 @@ const HeaderUpdates = () => {
             <EuiHeaderAlert
               key={`alert-${i}`}
               title={alert.title}
-              action={alert.action}
               text={alert.text}
               date={alert.date}
               badge={alert.badge}
@@ -146,7 +145,6 @@ const HeaderUpdates = () => {
           <EuiHeaderAlert
             key={`alert-${i}`}
             title={alert.title}
-            action={alert.action}
             text={alert.text}
             date={alert.date}
             badge={alert.badge}
@@ -258,7 +256,9 @@ export default () => {
     setDate(dateOfCreation);
     setName(name);
   };
-
+  useEffect(() => {
+    console.log('s0rcerer frontend, built by Antonio0806')
+  }); 
   return (
     <>
       <EuiSpacer />
