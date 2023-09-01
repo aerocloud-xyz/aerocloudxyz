@@ -6,8 +6,9 @@ interface UserDataProps {
     emailAddress: string;
     name: string;
     date: string;
+    handleLogout: () => void;
   }
-  const UserData: React.FC<UserDataProps> = ({ emailAddress, name, date }) => {
+  const UserData: React.FC<UserDataProps> = ({ emailAddress, name, date, handleLogout }) => {
     return (
       <EuiSplitPanel.Outer direction="column">
       <EuiSplitPanel.Inner>
@@ -22,7 +23,7 @@ interface UserDataProps {
           <EuiButton
               color='primary'
               isDisabled={false}
-              onClick={() => {}}
+              onClick={handleLogout}
               fill
             >
               Logout

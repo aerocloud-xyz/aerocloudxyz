@@ -171,13 +171,11 @@ const HeaderUpdates = () => {
 interface HeaderUserMenuProps {
   username: string;
   updateUser: () => void;
+  handleLogout: () => void;
 }
-const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({ username, updateUser }) => {
+const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({ username, updateUser, handleLogout }) => {
   const userPopoverId = useGeneratedHtmlId({ prefix: 'userPopover' });
   const [isOpen, setIsOpen] = useState(false);
-  const onLogout = () => {
-    console.log('Logout');
-  };
   const onMenuButtonClick = () => {
     setIsOpen(!isOpen);
   };
@@ -219,7 +217,7 @@ const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({ username, updateUser })
               <EuiFlexItem>
                 <EuiFlexGroup justifyContent="spaceBetween">
                 <EuiFlexItem grow={false}>
-                    <EuiLink onClick={onLogout}>Log out</EuiLink>
+                    <EuiLink onClick={handleLogout}>Log out</EuiLink>
                 </EuiFlexItem>
                 </EuiFlexGroup>
               </EuiFlexItem>
@@ -254,7 +252,6 @@ export default () => {
   };
   const handleLogin = (email: string, name: string, dateOfCreation: string) => {
     //handling UI changes
-    handleNameChange(email);
     setIsLoggedIn(true);
     setUsername(name);
 
@@ -262,6 +259,12 @@ export default () => {
     setEmail(email);
     setDate(dateOfCreation);
     setName(name);
+  };
+  const handleLogout = () => {
+    console.log('Logging out');
+    localStorage.removeItem('usertoken');
+    setUsername('Not Logged In');
+    setIsLoggedIn(false);
   };
   useEffect(() => {
     console.log('s0rcerer frontend, built by Antonio0806')
@@ -280,7 +283,7 @@ export default () => {
             <HeaderUpdates />
           </EuiHeaderSectionItem>
           <EuiHeaderSectionItem>
-            <HeaderUserMenu username={Username} updateUser={updateUsername}/>
+            <HeaderUserMenu username={Username} updateUser={updateUsername} handleLogout={handleLogout}/>
           </EuiHeaderSectionItem>
           <EuiHeaderSectionItem>
 
@@ -288,7 +291,7 @@ export default () => {
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
-    {isLoggedIn ? <UserData emailAddress={email} name={name} date={date} /> : <div> {isRegistered ? <RegisterForm /> : <LoginForm onLogin={handleLogin} onRegister={handleLoadingRegisterForm}/>}</div>}
+    {isLoggedIn ? <UserData emailAddress={email} name={name} date={date} handleLogout={handleLogout} /> : <div> {isRegistered ? <RegisterForm /> : <LoginForm onLogin={handleLogin} onRegister={handleLoadingRegisterForm}/>}</div>}
       <EuiSpacer />
       <EuiSpacer size='xs' />
       <Metrics />

@@ -71,7 +71,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
       setError('An error occurred while logging in.');
     }
   };
-
   return (
     <div className="login-form-container">
       {error && <p className="error-message">❗ {error}</p>}

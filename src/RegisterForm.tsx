@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "@elastic/eui/dist/eui_theme_dark.css";
 import "./RegisterForm.css";
 import {
@@ -9,6 +9,7 @@ import {
   EuiSpacer,
   EuiButton,
 } from "@elastic/eui";
+import { AUTH_API } from './constants';
 interface RegisterFormProps {}
 const RegisterForm: React.FC<RegisterFormProps> = () => {
   const [error, setError] = useState<string | null>(null);
@@ -16,11 +17,14 @@ const RegisterForm: React.FC<RegisterFormProps> = () => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [name, setName] = useState("");
+  useEffect(() => {
+    setError('');
+  });
   const isValidEmail = (email: string) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     return emailPattern.test(email);
   };
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!name) {
         setError('Name is required');
       }
@@ -37,7 +41,32 @@ const RegisterForm: React.FC<RegisterFormProps> = () => {
         setError('The passwords dont match');
       }
 
-    console.log('11');
+      const formData = new URLSearchParams();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('password', password);
+  
+    //Make the request
+      try {
+        const response = await fetch(AUTH_API + '/register', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        });
+    
+        if (response.ok) {
+          console.log('Register cool');
+          window.location.reload();
+        } else {
+          // Handle error response
+          setError('Registry failed, try again later');
+          console.error('Register failed');
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
   };
   return (
     <div className="register-form-container">
