@@ -1,6 +1,5 @@
 import React from 'react';
-import { EuiText, EuiSplitPanel, EuiTextAlign, EuiButton } from '@elastic/eui';
-
+import { EuiText, EuiSplitPanel, EuiTextAlign, EuiButton, EuiAvatar } from '@elastic/eui';
 
 interface UserDataProps {
     emailAddress: string;
@@ -10,8 +9,9 @@ interface UserDataProps {
   }
   const UserData: React.FC<UserDataProps> = ({ emailAddress, name, date, handleLogout }) => {
     return (
-      <EuiSplitPanel.Outer direction="column">
+      <EuiSplitPanel.Outer direction="column" style={{width: '300px', height: '50%', marginTop: '50px', marginLeft: '50px', textAlign: 'center'}}>
       <EuiSplitPanel.Inner>
+        <EuiAvatar name={name} style={{width: '150px', height: '150px', margin: '25px'}} size={'xl'}/>
         <EuiText>
           <p>Email: {emailAddress}</p>
           <p>Account creation date: {date}</p>
@@ -21,17 +21,17 @@ interface UserDataProps {
       <EuiSplitPanel.Inner grow={false} color="subdued">
         <EuiTextAlign textAlign='center'>
           <EuiButton
-              color='primary'
+              color='danger'
               isDisabled={false}
-              onClick={handleLogout}
               fill
+              onClick={handleLogout}
+              style={{margin: '10px'}}
             >
               Logout
-          </EuiButton>
+            </EuiButton>
         </EuiTextAlign> 
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
-        
     );
   };
 

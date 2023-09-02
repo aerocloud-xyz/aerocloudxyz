@@ -25,6 +25,7 @@ import {
   EuiTitle,
   useGeneratedHtmlId,
   useEuiTheme,
+  EuiPageSidebar,
 } from '@elastic/eui';
 
 import alerts from './alerts';
@@ -244,9 +245,6 @@ export default () => {
     console.log('Opening register form');
     setIsRegistered(true);
   };
-  const handleNameChange = (newName: string) => {
-    setUpdatedName(newName);
-  };
   const updateUsername = () => {
     setUsername(updatedName);
   };
@@ -286,14 +284,12 @@ export default () => {
             <HeaderUserMenu username={Username} updateUser={updateUsername} handleLogout={handleLogout}/>
           </EuiHeaderSectionItem>
           <EuiHeaderSectionItem>
-
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
     {isLoggedIn ? <UserData emailAddress={email} name={name} date={date} handleLogout={handleLogout} /> : <div> {isRegistered ? <RegisterForm /> : <LoginForm onLogin={handleLogin} onRegister={handleLoadingRegisterForm}/>}</div>}
       <EuiSpacer />
-      <EuiSpacer size='xs' />
       <Metrics />
     </>
   );
