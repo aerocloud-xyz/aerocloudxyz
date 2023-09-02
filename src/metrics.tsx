@@ -8,6 +8,7 @@ import {
   EuiButton,
 } from "@elastic/eui";
 import { AUTH_API } from "./constants";
+import "./metrics.css";
 interface MetricsProps {}
 const Metrics: React.FC<MetricsProps> = () => {
   const [authApiStatus, setAuthApiStatus] = useState("subdued");
@@ -29,6 +30,8 @@ const Metrics: React.FC<MetricsProps> = () => {
     }
   };
   return (
+    <>
+    <div id="bottom-element">
     <EuiSplitPanel.Outer direction="row">
       <EuiSplitPanel.Inner>
         <EuiText>
@@ -46,12 +49,14 @@ const Metrics: React.FC<MetricsProps> = () => {
           Update Status
         </EuiButton>
       </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner color="subdued">
+      <EuiSplitPanel.Inner>
         <EuiText>
           <p>Placeholder</p>
         </EuiText>
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
+    </div>
+    </>
   );
 };
 
