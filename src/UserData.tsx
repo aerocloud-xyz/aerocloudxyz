@@ -6,8 +6,9 @@ interface UserDataProps {
     name: string;
     date: string;
     handleLogout: () => void;
+    deleteUser: () => void;
   }
-  const UserData: React.FC<UserDataProps> = ({ emailAddress, name, date, handleLogout }) => {
+  const UserData: React.FC<UserDataProps> = ({ emailAddress, name, date, handleLogout, deleteUser }) => {
     return (
       <EuiSplitPanel.Outer direction="column" style={{width: '300px', height: '50%', marginTop: '50px', marginLeft: '50px', textAlign: 'center'}}>
       <EuiSplitPanel.Inner>
@@ -22,6 +23,14 @@ interface UserDataProps {
         <EuiTextAlign textAlign='center'>
           <EuiButton
               color='danger'
+              isDisabled={false}
+              fill
+              onClick={deleteUser}
+              style={{margin: '10px'}}
+            >
+              Delete account
+            </EuiButton>
+            <EuiButton
               isDisabled={false}
               fill
               onClick={handleLogout}

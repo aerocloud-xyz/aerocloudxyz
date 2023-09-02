@@ -33,6 +33,7 @@ import LoginForm from './LoginForm';
 import UserData from './UserData';
 import Metrics from './metrics'
 import RegisterForm from './RegisterForm'
+import { AUTH_API } from './constants'
 
 const HeaderUpdates = () => {
   const { euiTheme } = useEuiTheme();
@@ -264,6 +265,33 @@ export default () => {
     setUsername('Not Logged In');
     setIsLoggedIn(false);
   };
+  const handleDeletion = async () => {
+    const token: string | null = localStorage.getItem('usertoken');
+    if(token !== null)
+    {
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("token", token);
+    try {
+    const response = await fetch(AUTH_API + '/deleteUser', {
+      method: 'DELETE',
+      body: urlencoded,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+    if (response.ok) {
+      console.log('Logging out & deleting');
+      localStorage.removeItem('usertoken');
+      setUsername('Not Logged In');
+      setIsLoggedIn(false);
+    } else {
+      console.log('Deletion failed!');
+    }
+  } catch(error) {
+    console.log('bruh');
+  }
+}
+}
   useEffect(() => {
     console.log('s0rcerer frontend, built by Antonio0806')
   }); 
@@ -288,7 +316,7 @@ export default () => {
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
-    {isLoggedIn ? <UserData emailAddress={email} name={name} date={date} handleLogout={handleLogout} /> : <div> {isRegistered ? <RegisterForm /> : <LoginForm onLogin={handleLogin} onRegister={handleLoadingRegisterForm}/>}</div>}
+    {isLoggedIn ? <UserData emailAddress={email} name={name} date={date} handleLogout={handleLogout} deleteUser={handleDeletion}/> : <div> {isRegistered ? <RegisterForm /> : <LoginForm onLogin={handleLogin} onRegister={handleLoadingRegisterForm}/>}</div>}
       <EuiSpacer />
       <Metrics />
     </>
