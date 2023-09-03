@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   EuiAvatar,
   EuiButtonEmpty,
@@ -26,25 +26,25 @@ import {
   useGeneratedHtmlId,
   useEuiTheme,
   EuiPageSidebar,
-} from '@elastic/eui';
+} from "@elastic/eui";
 
-import alerts from './alerts';
-import LoginForm from './LoginForm';
-import UserData from './UserData';
-import Metrics from './metrics'
-import RegisterForm from './RegisterForm'
-import { AUTH_API } from './constants'
+import alerts from "./alerts";
+import LoginForm from "./LoginForm";
+import UserData from "./content/UserData";
+import Metrics from "./metrics";
+import RegisterForm from "./RegisterForm";
+import { AUTH_API } from "./constants";
 
 const HeaderUpdates = () => {
   const { euiTheme } = useEuiTheme();
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: 'newsFeedFlyout' });
+  const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: "newsFeedFlyout" });
   const newsFeedFlyoutTitleId = useGeneratedHtmlId({
-    prefix: 'newsFeedFlyoutTitle',
+    prefix: "newsFeedFlyoutTitle",
   });
-  const newsFeedPopoverId = useGeneratedHtmlId({ prefix: 'newsFeedPopover' });
-  
+  const newsFeedPopoverId = useGeneratedHtmlId({ prefix: "newsFeedPopover" });
+
   const closeFlyout = () => {
     setIsFlyoutVisible(false);
   };
@@ -62,7 +62,7 @@ const HeaderUpdates = () => {
       aria-controls="headerFlyoutNewsFeed"
       aria-expanded={isFlyoutVisible}
       aria-haspopup="true"
-      aria-label={'Alerts feed: Updates available'}
+      aria-label={"Alerts feed: Updates available"}
       onClick={() => showFlyout()}
       notification={true}
     >
@@ -139,8 +139,8 @@ const HeaderUpdates = () => {
       <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
       <div
         style={{
-          maxHeight: '40vh',
-          overflowY: 'auto',
+          maxHeight: "40vh",
+          overflowY: "auto",
           padding: euiTheme.size.s,
         }}
       >
@@ -175,8 +175,12 @@ interface HeaderUserMenuProps {
   updateUser: () => void;
   handleLogout: () => void;
 }
-const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({ username, updateUser, handleLogout }) => {
-  const userPopoverId = useGeneratedHtmlId({ prefix: 'userPopover' });
+const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
+  username,
+  updateUser,
+  handleLogout,
+}) => {
+  const userPopoverId = useGeneratedHtmlId({ prefix: "userPopover" });
   const [isOpen, setIsOpen] = useState(false);
   const onMenuButtonClick = () => {
     setIsOpen(!isOpen);
@@ -218,9 +222,9 @@ const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({ username, updateUser, h
             <EuiFlexGroup>
               <EuiFlexItem>
                 <EuiFlexGroup justifyContent="spaceBetween">
-                <EuiFlexItem grow={false}>
+                  <EuiFlexItem grow={false}>
                     <EuiLink onClick={handleLogout}>Log out</EuiLink>
-                </EuiFlexItem>
+                  </EuiFlexItem>
                 </EuiFlexGroup>
               </EuiFlexItem>
             </EuiFlexGroup>
@@ -234,16 +238,16 @@ const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({ username, updateUser, h
 export default () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [updatedName, setUpdatedName] = useState('');
-  const [Username, setUsername] = useState('Not Logged In');
+  const [updatedName, setUpdatedName] = useState("");
+  const [Username, setUsername] = useState("Not Logged In");
 
   //UserData
-  const [email, setEmail] = useState('');
-  const [date, setDate] = useState('');
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [name, setName] = useState("");
 
   const handleLoadingRegisterForm = () => {
-    console.log('Opening register form');
+    console.log("Opening register form");
     setIsRegistered(true);
   };
   const updateUsername = () => {
@@ -260,45 +264,44 @@ export default () => {
     setName(name);
   };
   const handleLogout = () => {
-    console.log('Logging out');
-    localStorage.removeItem('usertoken');
-    setUsername('Not Logged In');
+    console.log("Logging out");
+    localStorage.removeItem("usertoken");
+    setUsername("Not Logged In");
     setIsLoggedIn(false);
   };
   const handleDeletion = async () => {
-    const token: string | null = localStorage.getItem('usertoken');
-    if(token !== null)
-    {
-    const urlencoded = new URLSearchParams();
-    urlencoded.append("token", token);
-    try {
-    const response = await fetch(AUTH_API + '/deleteUser', {
-      method: 'DELETE',
-      body: urlencoded,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
-    if (response.ok) {
-      console.log('Logging out & deleting');
-      localStorage.removeItem('usertoken');
-      setUsername('Not Logged In');
-      setIsLoggedIn(false);
-    } else {
-      console.log('Deletion failed!');
+    const token: string | null = localStorage.getItem("usertoken");
+    if (token !== null) {
+      const urlencoded = new URLSearchParams();
+      urlencoded.append("token", token);
+      try {
+        const response = await fetch(AUTH_API + "/deleteUser", {
+          method: "DELETE",
+          body: urlencoded,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        });
+        if (response.ok) {
+          console.log("Logging out & deleting");
+          localStorage.removeItem("usertoken");
+          setUsername("Not Logged In");
+          setIsLoggedIn(false);
+        } else {
+          console.log("Deletion failed!");
+        }
+      } catch (error) {
+        console.log("bruh");
+      }
     }
-  } catch(error) {
-    console.log('bruh');
-  }
-}
-}
+  };
   useEffect(() => {
-    console.log('s0rcerer frontend, built by Antonio0806')
-  }); 
+    console.log("s0rcerer frontend, built by Antonio0806");
+  });
   return (
     <>
       <EuiSpacer />
-      <EuiHeader position={'fixed'} theme={'default'}>
+      <EuiHeader position={"fixed"} theme={"default"}>
         <EuiHeaderSection>
           <EuiHeaderSectionItem>
             <EuiIcon type="/src/ikonka.svg" size="xl" title="s0rcerer" />
@@ -309,14 +312,38 @@ export default () => {
             <HeaderUpdates />
           </EuiHeaderSectionItem>
           <EuiHeaderSectionItem>
-            <HeaderUserMenu username={Username} updateUser={updateUsername} handleLogout={handleLogout}/>
+            <HeaderUserMenu
+              username={Username}
+              updateUser={updateUsername}
+              handleLogout={handleLogout}
+            />
           </EuiHeaderSectionItem>
-          <EuiHeaderSectionItem>
-          </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem></EuiHeaderSectionItem>
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
-    {isLoggedIn ? <UserData emailAddress={email} name={name} date={date} handleLogout={handleLogout} deleteUser={handleDeletion}/> : <div> {isRegistered ? <RegisterForm /> : <LoginForm onLogin={handleLogin} onRegister={handleLoadingRegisterForm}/>}</div>}
+      {isLoggedIn ? (
+        <UserData
+          emailAddress={email}
+          name={name}
+          date={date}
+          handleLogout={handleLogout}
+          deleteUser={handleDeletion}
+          style={{width: '300px', height: '50%', marginTop: '50px', marginLeft: '50px', textAlign: 'center'}}
+        />
+      ) : (
+        <div>
+          {" "}
+          {isRegistered ? (
+            <RegisterForm />
+          ) : (
+            <LoginForm
+              onLogin={handleLogin}
+              onRegister={handleLoadingRegisterForm}
+            />
+          )}
+        </div>
+      )}
       <EuiSpacer />
       <Metrics />
     </>
