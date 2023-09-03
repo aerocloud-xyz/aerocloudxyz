@@ -323,6 +323,8 @@ export default () => {
       </EuiHeader>
       <EuiSpacer />
       {isLoggedIn ? (
+        //Main page content, may be moved to separate file in future versions.
+        <>
         <UserData
           emailAddress={email}
           name={name}
@@ -331,6 +333,7 @@ export default () => {
           deleteUser={handleDeletion}
           style={{width: '300px', height: '50%', marginTop: '50px', marginLeft: '50px', textAlign: 'center'}}
         />
+        </>
       ) : (
         <div>
           {" "}
