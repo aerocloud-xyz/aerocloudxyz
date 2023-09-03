@@ -7,10 +7,11 @@ interface UserDataProps {
     date: string;
     handleLogout: () => void;
     deleteUser: () => void;
+    style: React.CSSProperties | undefined;
   }
-  const UserData: React.FC<UserDataProps> = ({ emailAddress, name, date, handleLogout, deleteUser }) => {
+  const UserData: React.FC<UserDataProps> = ({ emailAddress, name, date, handleLogout, deleteUser, style }) => {
     return (
-      <EuiSplitPanel.Outer direction="column" style={{width: '300px', height: '50%', marginTop: '50px', marginLeft: '50px', textAlign: 'center'}}>
+      <EuiSplitPanel.Outer direction="column" style={style}>
       <EuiSplitPanel.Inner>
         <EuiAvatar name={name} style={{width: '150px', height: '150px', margin: '25px'}} size={'xl'}/>
         <EuiText>
