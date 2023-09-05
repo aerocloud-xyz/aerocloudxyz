@@ -33,6 +33,7 @@ import LoginForm from "./LoginForm";
 import UserData from "./content/UserData";
 import Metrics from "./metrics";
 import RegisterForm from "./RegisterForm";
+import TabbedContent from "./content/TabbedContent";
 import { AUTH_API } from "./constants";
 
 const HeaderUpdates = () => {
@@ -331,7 +332,7 @@ export default () => {
           date={date}
           handleLogout={handleLogout}
           deleteUser={handleDeletion}
-          style={{width: '300px', height: '50%', marginTop: '50px', marginLeft: '50px', textAlign: 'center'}}
+          style={{width: '300px', height: '500px', margin: '50px', textAlign: 'center'}}
         />
         </>
       ) : (
