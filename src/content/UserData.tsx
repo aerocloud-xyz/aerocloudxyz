@@ -25,7 +25,7 @@ const UserData: React.FC<UserDataProps> = ({
   style,
 }) => {
   return (
-    <EuiSplitPanel.Outer direction="row">
+    <EuiSplitPanel.Outer direction="row" style={{ height: '100%' }}>
       <EuiSplitPanel.Inner grow={false}>
         <EuiSplitPanel.Outer direction="column" style={style}>
           <EuiSplitPanel.Inner>

@@ -2,29 +2,21 @@
 import React, { useState, Fragment, useMemo } from "react";
 import {
   EuiIcon,
-  EuiTabs,
-  EuiTab,
   EuiSpacer,
   EuiText,
   EuiNotificationBadge,
 } from "@elastic/eui";
+import Console from './Console';
 const tabs = [
     {
-      id: "console--id",
+      id: "console--id",  
       name: "Console",
       prepend: <EuiIcon type="console" />,
       content: (
         <Fragment>
           <EuiSpacer />
-          <EuiText>
-            <p>
-              Cobalt is a chemical element with symbol Co and atomic number 27.
-              Like nickel, cobalt is found in the Earth&rsquo;s crust only in
-              chemically combined form, save for small deposits found in alloys
-              of natural meteoric iron. The free element, produced by reductive
-              smelting, is a hard, lustrous, silver-gray metal.
-            </p>
-          </EuiText>
+            <Console />
+          <EuiSpacer />
         </Fragment>
       ),
     },
