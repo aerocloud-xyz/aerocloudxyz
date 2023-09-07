@@ -7,6 +7,7 @@ import {
   EuiNotificationBadge,
 } from "@elastic/eui";
 import Console from './Console';
+import UserProfile from './UserProfile';
 const tabs = [
     {
       id: "console--id",  
@@ -21,18 +22,13 @@ const tabs = [
       ),
     },
     {
-      id: "dextrose--id",
-      name: "Dextrose",
+      id: "profile--id",
+      name: "Profile",
+      prepend: <EuiIcon type="userAvatar" />,
       content: (
         <Fragment>
           <EuiSpacer />
-          <EuiText>
-            <p>
-              Intravenous sugar solution, also known as dextrose solution, is a
-              mixture of dextrose (glucose) and water. It is used to treat low
-              blood sugar or water loss without electrolyte loss.
-            </p>
-          </EuiText>
+          <UserProfile />
         </Fragment>
       ),
     },
