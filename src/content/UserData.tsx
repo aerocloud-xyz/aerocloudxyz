@@ -25,13 +25,13 @@ const UserData: React.FC<UserDataProps> = ({
   style,
 }) => {
   return (
-    <EuiSplitPanel.Outer direction="row" style={{ height: '100%' }}>
+    <EuiSplitPanel.Outer direction="row" style={{ height: '80 %' }}>
       <EuiSplitPanel.Inner grow={false}>
         <EuiSplitPanel.Outer direction="column" style={style}>
           <EuiSplitPanel.Inner>
             <EuiAvatar
               name={name}
-              style={{ width: "150px", height: "150px", margin: "25px" }}
+              style={{ width: "150px", height: "150px", margin: "15px" }}
               size={"xl"}
             />
             <EuiText>
