@@ -16,7 +16,7 @@ const tabs = [
       content: (
         <Fragment>
           <EuiSpacer />
-            <Console />
+            <Console render={true}/>
           <EuiSpacer />
         </Fragment>
       ),

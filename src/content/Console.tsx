@@ -1,11 +1,10 @@
-import {
-  EuiCard,
-  EuiIcon,
-} from "@elastic/eui";
+import { EuiCard, EuiIcon } from "@elastic/eui";
 import React, { useState, useEffect } from "react";
 import { SSH_API } from "../constants";
-interface ConsoleProps {}
-const Console: React.FC<ConsoleProps> = () => {
+interface ConsoleProps {
+  render: boolean;
+}
+const Console: React.FC<ConsoleProps> = ({ render }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
     const userToken = localStorage.getItem("usertoken");
@@ -24,7 +23,9 @@ const Console: React.FC<ConsoleProps> = () => {
     })
       .then((response) => {
         if (response.ok) {
-          setIsAuthenticated(true);
+          if (render) {
+            setIsAuthenticated(true);
+          }
         } else {
           setIsAuthenticated(false);
         }

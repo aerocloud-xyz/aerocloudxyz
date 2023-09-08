@@ -12,7 +12,7 @@ import {
 import './LoginForm.css'; // Import your custom CSS file
 import { AUTH_API } from './constants';
 interface LoginFormProps {
-  onLogin: (email: string, name: string, dateOfCreation: string) => void;
+  onLogin: (email: string, name: string, dateOfCreation: string, role: string) => void;
   onRegister: () => void;
 } 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
@@ -51,10 +51,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
         // Now you can access accountData properties
         const dateofcreation = accountData.user.date;
         const name = accountData.user.name;
+        const role = accountData.user.role;
         // Add the authentication token to local storage
         localStorage.setItem('usertoken', accountData.token);
 
-        onLogin(email, name, dateofcreation);
+        onLogin(email, name, dateofcreation, role);
       } else {
         // Handle error response
         setError('Login failed, check username and password');

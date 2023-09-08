@@ -245,6 +245,7 @@ export default () => {
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState("");
 
   const handleLoadingRegisterForm = () => {
     console.log("Opening register form");
@@ -253,12 +254,13 @@ export default () => {
   const updateUsername = () => {
     setUsername(updatedName);
   };
-  const handleLogin = (email: string, name: string, dateOfCreation: string) => {
+  const handleLogin = (email: string, name: string, dateOfCreation: string, role: string) => {
     //handling UI changes
     setIsLoggedIn(true);
     setUsername(name);
 
     //handling setting the variables for <UserData/>
+    setRole(role);
     setEmail(email);
     setDate(dateOfCreation);
     setName(name);
@@ -329,9 +331,10 @@ export default () => {
           emailAddress={email}
           name={name}
           date={date}
+          role={role}
           handleLogout={handleLogout}
           deleteUser={handleDeletion}
-          style={{width: '300px', height: '500px', margin: '50px', textAlign: 'center'}}
+          style={{width: '300px', height: '500px', marginLeft: '25px', marginTop: '15px', textAlign: 'center'}}
         />
         </>
       ) : (
