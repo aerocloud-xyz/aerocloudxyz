@@ -8,6 +8,7 @@ import {
 } from "@elastic/eui";
 import Console from './Console';
 import UserProfile from './UserProfile';
+import TabbedContent from "./TabbedContent";
 const tabs = [
     {
       id: "console--id",  

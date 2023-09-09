@@ -9,14 +9,14 @@ import {
 } from "@elastic/eui";
 import tabs from './Tabs';
 
-interface TabbedContent {}
+interface TabbedContent {
+}
 const TabbedContent: React.FC<TabbedContent> = ({}) => {
 
   const [selectedTabId, setSelectedTabId] = useState("cobalt--id");
   const selectedTabContent = useMemo(() => {
     return tabs.find((obj) => obj.id === selectedTabId)?.content;
   }, [selectedTabId, tabs]);
-
   const onSelectedTabChanged = (id: string) => {
     setSelectedTabId(id);
   };

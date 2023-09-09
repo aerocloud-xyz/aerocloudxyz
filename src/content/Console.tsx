@@ -21,11 +21,13 @@ const Console: React.FC<ConsoleProps> = ({ render }) => {
       },
       body: formData.toString(),
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
-          if (render) {
+          
+          if(render && response.json.toString() === "") {
             setIsAuthenticated(true);
           }
+            
         } else {
           setIsAuthenticated(false);
         }
