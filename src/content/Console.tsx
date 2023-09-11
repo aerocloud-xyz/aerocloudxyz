@@ -23,11 +23,13 @@ const Console: React.FC<ConsoleProps> = ({ render }) => {
     })
       .then(async (response) => {
         if (response.ok) {
-          
-          if(render && response.json.toString() === "") {
-            setIsAuthenticated(true);
+          if (render) {
+            const responseText = await response.text();
+              if (responseText === "administrator") {
+                console.log(responseText);
+                setIsAuthenticated(true);
+              }
           }
-            
         } else {
           setIsAuthenticated(false);
         }
