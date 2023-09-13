@@ -9,6 +9,7 @@ import {
 import Console from './Console';
 import UserProfile from './UserProfile';
 import TabbedContent from "./TabbedContent";
+import UserTable from './UserTable';
 const tabs = [
     {
       id: "console--id",  
@@ -34,20 +35,14 @@ const tabs = [
       ),
     },
     {
-      id: "hydrogen--id",
+      id: "users--id",
       disabled: false,
-      name: "Hydrogen",
-      prepend: <EuiIcon type="heatmap" />,
+      name: "Users management",
+      prepend: <EuiIcon type="userAvatar" />,
       content: (
         <Fragment>
           <EuiSpacer />
-          <EuiText>
-            <p>
-              Hydrogen is a chemical element with symbol H and atomic number 1.
-              With a standard atomic weight of 1.008, hydrogen is the lightest
-              element on the periodic table
-            </p>
-          </EuiText>
+            <UserTable />
         </Fragment>
       ),
     },

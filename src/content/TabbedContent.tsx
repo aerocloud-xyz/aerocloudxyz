@@ -13,7 +13,7 @@ interface TabbedContent {
 }
 const TabbedContent: React.FC<TabbedContent> = ({}) => {
 
-  const [selectedTabId, setSelectedTabId] = useState("cobalt--id");
+  const [selectedTabId, setSelectedTabId] = useState("profile--id");
   const selectedTabContent = useMemo(() => {
     return tabs.find((obj) => obj.id === selectedTabId)?.content;
   }, [selectedTabId, tabs]);
