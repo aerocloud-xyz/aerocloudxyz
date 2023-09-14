@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { EuiForm, EuiFormRow, EuiButton, EuiFieldText} from '@elastic/eui';
-interface UserProfileProps {
-
-}
+import React, { useState, useEffect } from "react";
+import { EuiForm, EuiFormRow, EuiButton, EuiFieldText } from "@elastic/eui";
+interface UserProfileProps {}
 
 const UserProfile: React.FC<UserProfileProps> = () => {
-    const [oldUsername, setOldUsername] = useState('');
-    const [newUsername, setNewUsername] = useState('');
-    useEffect(() => {
-        //TODO: fetch username from authentication server and setOldUsername.
-    });
-    const handleNameChange = () => {
-        //TODO: send username change request to authentication server
-    };
-    return (
-        <>
-        <EuiForm>
+  const [oldUsername, setOldUsername] = useState("");
+  const [newUsername, setNewUsername] = useState("");
+  useEffect(() => {
+    //TODO: fetch username from authentication server and setOldUsername.
+  });
+  const handleNameChange = () => {
+    //TODO: send username change request to authentication server
+  };
+  return (
+    <>
+      <EuiForm>
         <EuiFormRow>
           <EuiFieldText
             placeholder="username"
@@ -28,8 +26,8 @@ const UserProfile: React.FC<UserProfileProps> = () => {
           Change name
         </EuiButton>
       </EuiForm>
-        </>
-    );
+    </>
+  );
 };
 
 export default UserProfile;

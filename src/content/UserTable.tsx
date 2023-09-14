@@ -31,22 +31,22 @@ fetch("http://localhost:3001/api/getUsers", {
 })
   .then(async (response) => {
     if (response.ok) {
-        const responseText = await response.text();
-        const userArray = JSON.parse(responseText).data;
-        //console.log(userArray);
+      const responseText = await response.text();
+      const userArray = JSON.parse(responseText).data;
+      //console.log(userArray);
 
-        for (let i = 0; i < userArray.length; i++) {
-            const user = userArray[i]; // Get the user data from the response
-            users.push({
-              id: user.id,
-              email: user.email,
-              name: user.name,
-              dateOfCreation: 'test',
-            });
-          }
-        console.log(users);
+      for (let i = 0; i < userArray.length; i++) {
+        const user = userArray[i]; // Get the user data from the response
+        users.push({
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          dateOfCreation: "test",
+        });
+      }
+      console.log(users);
     } else {
-//nah
+      //nah
     }
   })
   .catch((error) => {
@@ -54,10 +54,7 @@ fetch("http://localhost:3001/api/getUsers", {
   });
 
 export default () => {
-  useEffect(() => {
-
-
-  });
+  useEffect(() => {});
   const columns: Array<EuiBasicTableColumn<User>> = [
     {
       field: "name",
@@ -79,10 +76,10 @@ export default () => {
         formatDate(dateOfCreation, "dobLong"),
     },
     {
-        field: "email",
-        name: "Email",
-        render: (email: User["email"]) => email,
-      }
+      field: "email",
+      name: "Email",
+      render: (email: User["email"]) => email,
+    },
   ];
   const getRowProps = (user: User) => {
     const { id } = user;

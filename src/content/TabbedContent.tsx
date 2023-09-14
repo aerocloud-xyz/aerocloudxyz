@@ -7,12 +7,10 @@ import {
   EuiText,
   EuiNotificationBadge,
 } from "@elastic/eui";
-import tabs from './Tabs';
+import tabs from "./Tabs";
 
-interface TabbedContent {
-}
+interface TabbedContent {}
 const TabbedContent: React.FC<TabbedContent> = ({}) => {
-
   const [selectedTabId, setSelectedTabId] = useState("profile--id");
   const selectedTabContent = useMemo(() => {
     return tabs.find((obj) => obj.id === selectedTabId)?.content;

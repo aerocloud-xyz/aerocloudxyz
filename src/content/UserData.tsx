@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   EuiText,
   EuiSplitPanel,
@@ -25,18 +25,18 @@ const UserData: React.FC<UserDataProps> = ({
   handleLogout,
   deleteUser,
   style,
-  role
+  role,
 }) => {
   const [brole, setRole] = useState(false);
   useEffect(() => {
-    if(role == "default") {
+    if (role == "default") {
       setRole(false);
-    } else if(role == "administrator"){
+    } else if (role == "administrator") {
       setRole(true);
     }
   });
   return (
-    <EuiSplitPanel.Outer direction="row" style={{ height: '80 %' }}>
+    <EuiSplitPanel.Outer direction="row" style={{ height: "80 %" }}>
       <EuiSplitPanel.Inner grow={false}>
         <EuiSplitPanel.Outer direction="column" style={style}>
           <EuiSplitPanel.Inner>
@@ -48,7 +48,9 @@ const UserData: React.FC<UserDataProps> = ({
             <EuiText>
               <p>Email: {emailAddress}</p>
               <p>Account creation date: {date}</p>
-              <p>Name: {name} <EuiBadge color={'danger'}>{role}</EuiBadge></p> 
+              <p>
+                Name: {name} <EuiBadge color={"danger"}>{role}</EuiBadge>
+              </p>
             </EuiText>
           </EuiSplitPanel.Inner>
           <EuiSplitPanel.Inner grow={false} color="subdued">
@@ -74,7 +76,7 @@ const UserData: React.FC<UserDataProps> = ({
           </EuiSplitPanel.Inner>
         </EuiSplitPanel.Outer>
       </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner >
+      <EuiSplitPanel.Inner>
         <TabbedContent />
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>

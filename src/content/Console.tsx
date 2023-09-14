@@ -25,10 +25,10 @@ const Console: React.FC<ConsoleProps> = ({ render }) => {
         if (response.ok) {
           if (render) {
             const responseText = await response.text();
-              if (responseText === "administrator") {
-                console.log(responseText);
-                setIsAuthenticated(true);
-              }
+            if (responseText === "administrator") {
+              console.log(responseText);
+              setIsAuthenticated(true);
+            }
           }
         } else {
           setIsAuthenticated(false);
