@@ -306,7 +306,7 @@ export default () => {
       <EuiHeader position={"fixed"} theme={"default"}>
         <EuiHeaderSection>
           <EuiHeaderSectionItem>
-            <EuiIcon type="/src/ikonka.svg" size="xl" title="s0rcerer" />
+            <EuiIcon href="./ikonka.svg" type="./ikonka.svg" size="xl" title="s0rcerer" />
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
         <EuiHeaderSection side="right">
