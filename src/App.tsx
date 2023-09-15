@@ -293,7 +293,7 @@ export default () => {
           console.log("Deletion failed!");
         }
       } catch (error) {
-        console.log("bruh");
+        console.log("brukh");
       }
     }
   };
