@@ -7,7 +7,7 @@ interface ConsoleProps {
 const Console: React.FC<ConsoleProps> = ({ render }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
-    const userToken = localStorage.getItem("usertoken");
+    const userToken = localStorage.getItem('usertoken');
     const formData = new URLSearchParams();
     if (userToken) {
       formData.append("token", userToken);
