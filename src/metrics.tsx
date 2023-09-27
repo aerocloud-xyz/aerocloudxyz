@@ -21,7 +21,7 @@ const Metrics: React.FC<MetricsProps> = () => {
   const updateMetrics = async () => {
     //Auth API
     try {
-      const response = await fetch("http://192.168.1.20:3001/api");
+      const response = await fetch("http://2.4.222.204:3001/api");
       if (response.ok) {
         setAuthApiStatus("success");
       }
