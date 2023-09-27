@@ -22,7 +22,7 @@ if (userToken) {
 } else {
   console.error("User token is missing or invalid.");
 }
-fetch("http://localhost:3001/api/getUsers", {
+fetch("http://192.168.1.20:3001/api/getUsers", {
   method: "POST",
   headers: {
     "Content-Type": "application/x-www-form-urlencoded",
