@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/UI/static/css/main.e0bd0ed7.css",
-    "main.js": "/UI/static/js/main.1d4fe50e.js",
+    "main.js": "/UI/static/js/main.a8b8c2ed.js",
     "icon.accessibility.js": "/UI/static/js/icon.accessibility.ac7b7cb5.chunk.js",
     "icon.aggregate.js": "/UI/static/js/icon.aggregate.38fe0448.chunk.js",
     "icon.alert.js": "/UI/static/js/icon.alert.a43d5ae8.chunk.js",
@@ -480,7 +480,7 @@
     "static/js/787.0840c4a6.chunk.js": "/UI/static/js/787.0840c4a6.chunk.js",
     "index.html": "/UI/index.html",
     "main.e0bd0ed7.css.map": "/UI/static/css/main.e0bd0ed7.css.map",
-    "main.1d4fe50e.js.map": "/UI/static/js/main.1d4fe50e.js.map",
+    "main.a8b8c2ed.js.map": "/UI/static/js/main.a8b8c2ed.js.map",
     "icon.accessibility.ac7b7cb5.chunk.js.map": "/UI/static/js/icon.accessibility.ac7b7cb5.chunk.js.map",
     "icon.aggregate.38fe0448.chunk.js.map": "/UI/static/js/icon.aggregate.38fe0448.chunk.js.map",
     "icon.alert.a43d5ae8.chunk.js.map": "/UI/static/js/icon.alert.a43d5ae8.chunk.js.map",
@@ -960,6 +960,6 @@
   },
   "entrypoints": [
     "static/css/main.e0bd0ed7.css",
-    "static/js/main.1d4fe50e.js"
+    "static/js/main.a8b8c2ed.js"
   ]
 }
