@@ -14,7 +14,7 @@ const Console: React.FC<ConsoleProps> = ({ render }) => {
     } else {
       console.error("User token is missing or invalid.");
     }
-    fetch("http://2.4.222.204:3001/users/verifytoken", {
+    fetch("https://2.4.222.204:3001/users/verifytoken", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
