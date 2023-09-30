@@ -7,7 +7,7 @@ import {
   EuiText,
   EuiButton,
 } from "@elastic/eui";
-import { AUTH_API } from "./constants";
+import { API, AUTH_API } from "./constants";
 import "./metrics.css";
 interface MetricsProps {}
 const Metrics: React.FC<MetricsProps> = () => {
@@ -21,7 +21,7 @@ const Metrics: React.FC<MetricsProps> = () => {
   const updateMetrics = async () => {
     //Auth API
     try {
-      const response = await fetch("https://aerocloud.xyz:3001/api");
+      const response = await fetch(API);
       if (response.ok) {
         setAuthApiStatus("success");
       }

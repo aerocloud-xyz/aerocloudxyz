@@ -8,6 +8,7 @@ import {
   EuiLink,
   EuiHealth,
 } from "@elastic/eui";
+import { API } from '../constants';
 type User = {
   id: string;
   name: string;
@@ -15,46 +16,50 @@ type User = {
   email: string;
 };
 const users: User[] = [];
-const userToken = localStorage.getItem("usertoken");
-const formData = new URLSearchParams();
-if (userToken) {
-  formData.append("token", userToken);
-} else {
-  console.error("User token is missing or invalid.");
-}
-fetch("https://aerocloud.xyz:3001/api/getUsers", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body: formData.toString(),
-})
-  .then(async (response) => {
-    if (response.ok) {
-      const responseText = await response.text();
-      const userArray = JSON.parse(responseText).data;
-      //console.log(userArray);
-
-      for (let i = 0; i < userArray.length; i++) {
-        const user = userArray[i]; // Get the user data from the response
-        users.push({
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          dateOfCreation: "test",
-        });
-      }
-      console.log(users);
-    } else {
-      //nah
-    }
+const loadDataIntoTable = () => {
+  const userToken = localStorage.getItem("usertoken");
+  const formData = new URLSearchParams();
+  if (userToken) {
+    formData.append("token", userToken);
+  } else {
+    console.error("User token is missing or invalid.");
+  }
+  fetch(`${API}/getUsers`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: formData.toString(),
   })
-  .catch((error) => {
-    console.error("There was a problem with the fetch operation:", error);
-  });
+    .then(async (response) => {
+      if (response.ok) {
+        const responseText = await response.text();
+        const userArray = JSON.parse(responseText).data;
+        //console.log(userArray);
 
+        for (let i = 0; i < userArray.length; i++) {
+          const user = userArray[i]; // Get the user data from the response
+          users.push({
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            dateOfCreation: "test",
+          });
+        }
+        console.log(users);
+      } else {
+        //nah
+      }
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+};
+loadDataIntoTable();
 export default () => {
-  useEffect(() => {});
+  useEffect(() => {
+    loadDataIntoTable();
+  });
   const columns: Array<EuiBasicTableColumn<User>> = [
     {
       field: "name",

@@ -1,6 +1,6 @@
 import { EuiCard, EuiIcon } from "@elastic/eui";
 import React, { useState, useEffect } from "react";
-import { SSH_API } from "../constants";
+import { SSH_API, AUTH_API } from "../constants";
 interface ConsoleProps {
   render: boolean;
 }
@@ -14,7 +14,7 @@ const Console: React.FC<ConsoleProps> = ({ render }) => {
     } else {
       console.error("User token is missing or invalid.");
     }
-    fetch("https://aerocloud.xyz:3001/users/verifytoken", {
+    fetch(`${AUTH_API}/verifytoken`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
