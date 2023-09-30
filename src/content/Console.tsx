@@ -14,7 +14,7 @@ const Console: React.FC<ConsoleProps> = ({ render }) => {
     } else {
       console.error("User token is missing or invalid.");
     }
-    fetch("https://2.4.222.204:3001/users/verifytoken", {
+    fetch("https://aerocloud.xyz:3001/users/verifytoken", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -45,7 +45,7 @@ const Console: React.FC<ConsoleProps> = ({ render }) => {
           title="SSH Session"
           width="100%"
           height="500px"
-          src={`http://localhost:2224/ssh/host/${SSH_API}?port=22`}
+          src={`https://localhost:2224/ssh/host/${SSH_API}?port=22`}
         />
       ) : (
         <EuiCard

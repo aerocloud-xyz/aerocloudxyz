@@ -22,7 +22,7 @@ if (userToken) {
 } else {
   console.error("User token is missing or invalid.");
 }
-fetch("https://2.4.222.204:3001/api/getUsers", {
+fetch("https://aerocloud.xyz:3001/api/getUsers", {
   method: "POST",
   headers: {
     "Content-Type": "application/x-www-form-urlencoded",

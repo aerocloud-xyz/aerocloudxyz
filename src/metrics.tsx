@@ -21,7 +21,7 @@ const Metrics: React.FC<MetricsProps> = () => {
   const updateMetrics = async () => {
     //Auth API
     try {
-      const response = await fetch("https://2.4.222.204:3001/api");
+      const response = await fetch("https://aerocloud.xyz:3001/api");
       if (response.ok) {
         setAuthApiStatus("success");
       }

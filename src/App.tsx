@@ -118,7 +118,7 @@ const HeaderUpdates = () => {
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiText color="subdued" size="s">
-                <p>Version 7.0</p>
+                <p>Version 1.0</p>
               </EuiText>
             </EuiFlexItem>
           </EuiFlexGroup>
@@ -306,7 +306,7 @@ export default () => {
       <EuiHeader position={"fixed"} theme={"default"}>
         <EuiHeaderSection>
           <EuiHeaderSectionItem>
-            <EuiIcon href="./ikonka.svg" type="./ikonka.svg" size="xl" title="s0rcerer" />
+            <img src="./logo.svg" alt="aerocloud" width={250} height={50}/>
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
         <EuiHeaderSection side="right">

@@ -24,6 +24,7 @@ const tabs = [
   },
   {
     id: "profile--id",
+    disabled: true,
     name: "Profile",
     prepend: <EuiIcon type="userAvatar" />,
     content: (
@@ -44,29 +45,6 @@ const tabs = [
         <UserTable />
       </Fragment>
     ),
-  },
-  {
-    id: "monosodium_glutammate--id",
-    name: "Monosodium Glutamate",
-    append: (
-      <EuiNotificationBadge className="eui-alignCenter" size="m">
-        10
-      </EuiNotificationBadge>
-    ),
-    href: "#/navigation/tabs#monosodium",
-    content: (
-      <Fragment>
-        <EuiSpacer />
-        <EuiText>
-          <p>
-            Monosodium glutamate (MSG, also known as sodium glutamate) is the
-            sodium salt of glutamic acid, one of the most abundant naturally
-            occurring non-essential amino acids. Monosodium glutamate is found
-            naturally in tomatoes, cheese and other foods.
-          </p>
-        </EuiText>
-      </Fragment>
-    ),
-  },
+  }
 ];
 export default tabs;
