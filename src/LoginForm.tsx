@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '@elastic/eui/dist/eui_theme_dark.css';
+import React, { useState } from "react";
+import "@elastic/eui/dist/eui_theme_dark.css";
 import {
   EuiFieldText,
   EuiForm,
@@ -8,16 +8,21 @@ import {
   EuiSpacer,
   EuiFieldPassword,
   EuiLink,
-} from '@elastic/eui';
-import './LoginForm.css'; // Import your custom CSS file
-import { AUTH_API } from './constants';
+} from "@elastic/eui";
+import "./LoginForm.css"; // Import your custom CSS file
+import { AUTH_API } from "./constants";
 interface LoginFormProps {
-  onLogin: (email: string, name: string, dateOfCreation: string, role: string) => void;
+  onLogin: (
+    email: string,
+    name: string,
+    dateOfCreation: string,
+    role: string
+  ) => void;
   onRegister: () => void;
-} 
+}
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async () => {
@@ -27,49 +32,45 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
 
       // Validate inputs
       if (!email || !password) {
-        setError('Please provide both email and password.');
+        setError("Please provide both email and password.");
         return;
       }
 
       const formData = new URLSearchParams();
-    formData.append('email', email);
-    formData.append('password', password);
+      formData.append("email", email);
+      formData.append("password", password);
 
-  //Make the request
-    try {
-      const response = await fetch(AUTH_API + '/login', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
-  
-      if (response.ok) {
-        // Parse the JSON data from the response
-        const accountData = await response.json();
-        // Now you can access accountData properties
-        const dateofcreation = accountData.user.date;
-        const name = accountData.user.name;
-        const role = accountData.user.role;
-        // Add the authentication token to local storage
-        localStorage.setItem('usertoken', accountData.token);
+      //Make the request
+      try {
+        const response = await fetch(AUTH_API + "/login", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        });
 
-        onLogin(email, name, dateofcreation, role);
-      } else {
-        // Handle error response
-        setError('Login failed, check username and password');
-        console.error('Login failed');
+        if (response.ok) {
+          // Parse the JSON data from the response
+          const accountData = await response.json();
+          // Now you can access accountData properties
+          const dateofcreation = accountData.user.date;
+          const name = accountData.user.name;
+          const role = accountData.user.role;
+          // Add the authentication token to local storage
+          localStorage.setItem("usertoken", accountData.token);
+
+          onLogin(email, name, dateofcreation, role);
+        } else {
+          // Handle error response
+          setError("Login failed, check username and password");
+          console.error("Login failed");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
       }
     } catch (error) {
-      console.error('An error occurred:', error);
-    }
-    //TODO: Remove from production
-    console.log('Email:', email);
-    console.log('Password:', password);
-
-    } catch (error) {
-      setError('An error occurred while logging in.');
+      setError("An error occurred while logging in.");
     }
   };
   return (
@@ -83,7 +84,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             fullWidth
-            
           />
         </EuiFormRow>
         <EuiFormRow>
@@ -100,10 +100,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
         </EuiButton>
         <div className="register">
           <a href="/register">Forgot password?</a>
-          <EuiLink onClick={onRegister}>Don't have an account? Register!</EuiLink>
+          <EuiLink onClick={onRegister}>
+            Don't have an account? Register!
+          </EuiLink>
         </div>
       </EuiForm>
     </div>
   );
-}
+};
 export default LoginForm;
