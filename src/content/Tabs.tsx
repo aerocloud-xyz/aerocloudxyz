@@ -14,7 +14,7 @@ const tabs = [
     id: "console--id",
     name: "Console",
     append: <></>,
-    href: "/",
+    href: "",
     prepend: <EuiIcon type="console" />,
     content: (
       <Fragment>

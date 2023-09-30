@@ -37,38 +37,15 @@ import { AUTH_API } from "./constants";
 
 const HeaderUpdates = () => {
   const { euiTheme } = useEuiTheme();
-  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: "newsFeedFlyout" });
-  const newsFeedFlyoutTitleId = useGeneratedHtmlId({
-    prefix: "newsFeedFlyoutTitle",
-  });
   const newsFeedPopoverId = useGeneratedHtmlId({ prefix: "newsFeedPopover" });
 
-  const closeFlyout = () => {
-    setIsFlyoutVisible(false);
-  };
   const closePopover = () => {
     setIsPopoverVisible(false);
-  };
-  const showFlyout = () => {
-    setIsFlyoutVisible(!isFlyoutVisible);
   };
   const showPopover = () => {
     setIsPopoverVisible(!isPopoverVisible);
   };
-  const bellButton = (
-    <EuiHeaderSectionItemButton
-      aria-controls="headerFlyoutNewsFeed"
-      aria-expanded={isFlyoutVisible}
-      aria-haspopup="true"
-      aria-label={"Alerts feed: Updates available"}
-      onClick={() => showFlyout()}
-      notification={true}
-    >
-      <EuiIcon type="bell" />
-    </EuiHeaderSectionItemButton>
-  );
   const cheerButton = (
     <EuiHeaderSectionItemButton
       aria-controls="headerPopoverNewsFeed"
@@ -76,56 +53,12 @@ const HeaderUpdates = () => {
       aria-haspopup="true"
       aria-label={"News feed: Updates available'"}
       onClick={showPopover}
-      notification={6}
+      notification={1}
     >
       <EuiIcon type="cheer" />
     </EuiHeaderSectionItemButton>
   );
-  const flyout = (
-    <EuiPortal>
-      <EuiFlyout
-        onClose={closeFlyout}
-        size="s"
-        id={newsFeedFlyoutId}
-        aria-labelledby={newsFeedFlyoutTitleId}
-      >
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="s">
-            <h2 id={newsFeedFlyoutTitleId}>What&apos;s new</h2>
-          </EuiTitle>
-        </EuiFlyoutHeader>
-        <EuiFlyoutBody>
-          {alerts.map((alert, i) => (
-            <EuiHeaderAlert
-              key={`alert-${i}`}
-              title={alert.title}
-              text={alert.text}
-              date={alert.date}
-              badge={alert.badge}
-            />
-          ))}
-        </EuiFlyoutBody>
-        <EuiFlyoutFooter>
-          <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
-            <EuiFlexItem grow={false}>
-              <EuiButtonEmpty
-                iconType="cross"
-                onClick={closeFlyout}
-                flush="left"
-              >
-                Close
-              </EuiButtonEmpty>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiText color="subdued" size="s">
-                <p>Version 1.0</p>
-              </EuiText>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiFlyoutFooter>
-      </EuiFlyout>
-    </EuiPortal>
-  );
+
   const popover = (
     <EuiPopover
       id={newsFeedPopoverId}
@@ -164,9 +97,7 @@ const HeaderUpdates = () => {
   );
   return (
     <>
-      {bellButton}
       {popover}
-      {isFlyoutVisible && flyout}
     </>
   );
 };
