@@ -1280,6 +1280,30 @@
   "resolved" "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz"
   "version" "2.2.0"
 
+"@elastic/apm-rum-core@^5.20.0":
+  "integrity" "sha512-vOUCczY7jOyXyaeduQud8ZBC3JpluZAzfwgGjJl3AgkUOU+v00aAmekwKscAFwdC1li4+03rM9hyc+hOgYuLPA=="
+  "resolved" "https://registry.npmjs.org/@elastic/apm-rum-core/-/apm-rum-core-5.20.0.tgz"
+  "version" "5.20.0"
+  dependencies:
+    "error-stack-parser" "^1.3.5"
+    "opentracing" "^0.14.3"
+    "promise-polyfill" "^8.1.3"
+
+"@elastic/apm-rum-react@^2.0.1":
+  "integrity" "sha512-UxoRhYctnxhX0f8eHxZtQonv/4Nq8wm+kl/LOrxecP+AcGwzeDfWWgzNiZNaKtVg0/3pp5NKSDIYBU5Fx27HCw=="
+  "resolved" "https://registry.npmjs.org/@elastic/apm-rum-react/-/apm-rum-react-2.0.1.tgz"
+  "version" "2.0.1"
+  dependencies:
+    "@elastic/apm-rum" "^5.15.0"
+    "hoist-non-react-statics" "^3.3.0"
+
+"@elastic/apm-rum@^5.15.0":
+  "integrity" "sha512-5YEvt8MpWKL8fPh87NvSKt9RAejKhlTyFtEWREp037h5yOEjZ/YnnGUG8aqXcwtEBRzBbkbtQKacNgFdeWnBmg=="
+  "resolved" "https://registry.npmjs.org/@elastic/apm-rum/-/apm-rum-5.15.0.tgz"
+  "version" "5.15.0"
+  dependencies:
+    "@elastic/apm-rum-core" "^5.20.0"
+
 "@elastic/datemath@^5.0.3":
   "integrity" "sha512-8Hbr1Uyjm5OcYBfEB60K7sCP6U3IXuWDaLaQmYv3UxgI4jqBWbakoemwWvsqPVUvnwEjuX6z7ghPZbefs8xiaA=="
   "resolved" "https://registry.npmjs.org/@elastic/datemath/-/datemath-5.0.3.tgz"
@@ -4465,6 +4489,13 @@
   dependencies:
     "is-arrayish" "^0.2.1"
 
+"error-stack-parser@^1.3.5":
+  "integrity" "sha512-xhuSYd8wLgOXwNgjcPeXMPL/IiiA1Huck+OPvClpJViVNNlJVtM41o+1emp7bPvlCJwCatFX2DWc05/DgfbWzA=="
+  "resolved" "https://registry.npmjs.org/error-stack-parser/-/error-stack-parser-1.3.6.tgz"
+  "version" "1.3.6"
+  dependencies:
+    "stackframe" "^0.3.1"
+
 "error-stack-parser@^2.0.6":
   "integrity" "sha512-Sk5V6wVazPhq5MhpO+AUxJn5x7XSXGl1R93Vn7i+zS15KDVxQijejNCrz8340/2bgLBjR9GtEG8ZVKONDjcqGQ=="
   "resolved" "https://registry.npmjs.org/error-stack-parser/-/error-stack-parser-2.1.4.tgz"
@@ -7555,6 +7586,11 @@
     "is-docker" "^2.1.1"
     "is-wsl" "^2.2.0"
 
+"opentracing@^0.14.3":
+  "integrity" "sha512-vz9iS7MJ5+Bp1URw8Khvdyw1H/hGvzHWlKQ7eRrQojSCDL1/SrWfrY9QebLw97n2deyRtzHRC3MkQfVNUCo91Q=="
+  "resolved" "https://registry.npmjs.org/opentracing/-/opentracing-0.14.7.tgz"
+  "version" "0.14.7"
+
 "optionator@^0.9.3":
   "integrity" "sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg=="
   "resolved" "https://registry.npmjs.org/optionator/-/optionator-0.9.3.tgz"
@@ -8366,6 +8402,11 @@
   "integrity" "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="
   "resolved" "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
   "version" "2.0.1"
+
+"promise-polyfill@^8.1.3":
+  "integrity" "sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg=="
+  "resolved" "https://registry.npmjs.org/promise-polyfill/-/promise-polyfill-8.3.0.tgz"
+  "version" "8.3.0"
 
 "promise@^7.1.1":
   "integrity" "sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg=="
@@ -9608,6 +9649,11 @@
   "version" "2.0.6"
   dependencies:
     "escape-string-regexp" "^2.0.0"
+
+"stackframe@^0.3.1":
+  "integrity" "sha512-XmoiF4T5nuWEp2x2w92WdGjdHGY/cZa6LIbRsDRQR/Xlk4uW0PAUlH1zJYVffocwKpCdwyuypIp25xsSXEtZHw=="
+  "resolved" "https://registry.npmjs.org/stackframe/-/stackframe-0.3.1.tgz"
+  "version" "0.3.1"
 
 "stackframe@^1.3.4":
   "integrity" "sha512-oeVtt7eWQS+Na6F//S4kJ2K2VbRlS9D43mAlMyVpVWovy9o+jfgH8O9agzANzaiLjclA0oYzUXEM4PurhSUChw=="

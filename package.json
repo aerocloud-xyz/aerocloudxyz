@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://aerocloud.xyz/",
   "dependencies": {
+    "@elastic/apm-rum-react": "^2.0.1",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "^87.1.0",
     "@emotion/css": "^11.11.2",
@@ -29,8 +30,8 @@
     "xterm-addon-fit": "^0.7.0"
   },
   "scripts": {
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
