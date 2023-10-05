@@ -8,6 +8,7 @@ import {
 import Console from "./Console";
 import UserProfile from "./UserProfile";
 import TabbedContent from "./TabbedContent";
+import GraphsComponent from "./GraphsComponent";
 import UserTable from "./UserTable";
 const tabs = [
   {
@@ -45,6 +46,18 @@ const tabs = [
       <Fragment>
         <EuiSpacer />
         <UserTable />
+      </Fragment>
+    ),
+  },
+  {
+    id: "metrics--id",
+    disabled: false,
+    name: "Metrics",
+    prepend: <EuiIcon type="chart" />,
+    content: (
+      <Fragment>
+        <EuiSpacer /> 
+        <GraphsComponent />
       </Fragment>
     ),
   }
