@@ -53,7 +53,7 @@ const tabs = [
     id: "metrics--id",
     disabled: false,
     name: "Metrics",
-    prepend: <EuiIcon type="chart" />,
+    prepend: <EuiIcon type="visArea" />,
     content: (
       <Fragment>
         <EuiSpacer /> 

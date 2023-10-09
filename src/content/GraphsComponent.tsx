@@ -6,7 +6,7 @@ const GraphsComponent: React.FC<GraphsComponentProps> = () => {
   return(<>
     <EuiFlexItem key={'metrics--index'}>
       <EuiCard
-        icon={<EuiIcon size="xxl" type={`chart`} />}
+        icon={<EuiIcon size="xxl" type={`visArea`} />}
         title={`Aerocloud Metrics`}
         isDisabled={false}
         description="Aerocloud Metrics, WIP"

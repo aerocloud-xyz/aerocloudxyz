@@ -11,7 +11,7 @@ import tabs from "./Tabs";
 
 interface TabbedContent {}
 const TabbedContent: React.FC<TabbedContent> = ({}) => {
-  const [selectedTabId, setSelectedTabId] = useState("profile--id");
+  const [selectedTabId, setSelectedTabId] = useState("metrics--id");
   const selectedTabContent = useMemo(() => {
     return tabs.find((obj) => obj.id === selectedTabId)?.content;
   }, [selectedTabId, tabs]);

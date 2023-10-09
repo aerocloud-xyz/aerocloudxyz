@@ -31,7 +31,6 @@ import {
 import alerts from "./alerts";
 import LoginForm from "./LoginForm";
 import UserData from "./content/UserData";
-import Metrics from "./metrics";
 import RegisterForm from "./RegisterForm";
 import { AUTH_API } from "./constants";
 
@@ -282,7 +281,6 @@ export default () => {
         </div>
       )}
       <EuiSpacer />
-      <Metrics />
     </>
   );
 };
