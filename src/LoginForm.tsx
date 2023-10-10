@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "@elastic/eui/dist/eui_theme_dark.css";
+import { useCookies } from 'react-cookie';
 import {
   EuiFieldText,
   EuiForm,
@@ -24,6 +25,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [cookies, setCookie] = useCookies(['user']);
 
   const handleLogin = async () => {
     try {
@@ -59,7 +61,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
           const role = accountData.user.role;
           // Add the authentication token to local storage
           localStorage.setItem("usertoken", accountData.token);
-
+          // Save the authentication token to a cookie.
+          setCookie('user', accountData.token);
           onLogin(email, name, dateofcreation, role);
         } else {
           // Handle error response

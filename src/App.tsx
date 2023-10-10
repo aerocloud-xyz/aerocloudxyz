@@ -33,6 +33,7 @@ import LoginForm from "./LoginForm";
 import UserData from "./content/UserData";
 import RegisterForm from "./RegisterForm";
 import { AUTH_API } from "./constants";
+import { useCookies } from "react-cookie";
 
 const HeaderUpdates = () => {
   const { euiTheme } = useEuiTheme();
@@ -94,11 +95,7 @@ const HeaderUpdates = () => {
       </EuiPopoverFooter>
     </EuiPopover>
   );
-  return (
-    <>
-      {popover}
-    </>
-  );
+  return <>{popover}</>;
 };
 interface HeaderUserMenuProps {
   username: string;
@@ -170,6 +167,7 @@ export default () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [updatedName, setUpdatedName] = useState("");
   const [Username, setUsername] = useState("Not Logged In");
+  const [cookies, setCookie] = useCookies(["user"]);
 
   //UserData
   const [email, setEmail] = useState("");
@@ -184,7 +182,12 @@ export default () => {
   const updateUsername = () => {
     setUsername(updatedName);
   };
-  const handleLogin = (email: string, name: string, dateOfCreation: string, role: string) => {
+  const handleLogin = (
+    email: string,
+    name: string,
+    dateOfCreation: string,
+    role: string
+  ) => {
     //handling UI changes
     setIsLoggedIn(true);
     setUsername(name);
@@ -228,6 +231,16 @@ export default () => {
     }
   };
   useEffect(() => {
+    if (cookies.user) {
+      //handling UI changes
+      setUsername('');
+      setIsLoggedIn(true);
+      //handling setting the variables for <UserData/>
+      setRole('');
+      setEmail('');
+      setDate('');
+      setName('');
+    }
     console.log("s0rcerer frontend, built by Antonio0806");
   });
   return (
@@ -236,7 +249,7 @@ export default () => {
       <EuiHeader position={"fixed"} theme={"default"}>
         <EuiHeaderSection>
           <EuiHeaderSectionItem>
-            <img src="./logo.svg" alt="aerocloud" width={250} height={50}/>
+            <img src="./logo.svg" alt="aerocloud" width={250} height={50} />
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
         <EuiHeaderSection side="right">
@@ -257,15 +270,21 @@ export default () => {
       {isLoggedIn ? (
         //Main page content, may be moved to separate file in future versions.
         <>
-        <UserData
-          emailAddress={email}
-          name={name}
-          date={date}
-          role={role}
-          handleLogout={handleLogout}
-          deleteUser={handleDeletion}
-          style={{width: '300px', height: '500px', marginLeft: '25px', marginTop: '15px', textAlign: 'center'}}
-        />
+          <UserData
+            emailAddress={email}
+            name={name}
+            date={date}
+            role={role}
+            handleLogout={handleLogout}
+            deleteUser={handleDeletion}
+            style={{
+              width: "300px",
+              height: "500px",
+              marginLeft: "25px",
+              marginTop: "15px",
+              textAlign: "center",
+            }}
+          />
         </>
       ) : (
         <div>
