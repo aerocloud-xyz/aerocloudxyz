@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useEffect } from "react";
 import {
@@ -231,16 +232,6 @@ export default () => {
     }
   };
   useEffect(() => {
-    if (cookies.user) {
-      //handling UI changes
-      setUsername('');
-      setIsLoggedIn(true);
-      //handling setting the variables for <UserData/>
-      setRole('');
-      setEmail('');
-      setDate('');
-      setName('');
-    }
     console.log("s0rcerer frontend, built by Antonio0806");
   });
   return (
