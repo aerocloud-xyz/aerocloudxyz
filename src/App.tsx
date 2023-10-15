@@ -3,13 +3,8 @@
 import React, { useState, useEffect } from "react";
 import {
   EuiAvatar,
-  EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiFlyout,
-  EuiFlyoutBody,
-  EuiFlyoutFooter,
-  EuiFlyoutHeader,
   EuiHeader,
   EuiHeaderAlert,
   EuiHeaderSection,
@@ -20,13 +15,10 @@ import {
   EuiPopover,
   EuiPopoverFooter,
   EuiPopoverTitle,
-  EuiPortal,
   EuiSpacer,
   EuiText,
-  EuiTitle,
   useGeneratedHtmlId,
   useEuiTheme,
-  EuiPageSidebar,
 } from "@elastic/eui";
 
 import alerts from "./alerts";

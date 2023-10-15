@@ -5,8 +5,6 @@ import {
   EuiBasicTable,
   EuiBasicTableColumn,
   EuiTableFieldDataColumnType,
-  EuiLink,
-  EuiHealth,
 } from "@elastic/eui";
 import { API } from '../constants';
 type User = {

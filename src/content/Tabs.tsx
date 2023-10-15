@@ -1,13 +1,10 @@
-import React, { useState, Fragment, useMemo } from "react";
+import React, { Fragment } from "react";
 import {
   EuiIcon,
   EuiSpacer,
-  EuiText,
-  EuiNotificationBadge,
 } from "@elastic/eui";
 import Console from "./Console";
 import UserProfile from "./UserProfile";
-import TabbedContent from "./TabbedContent";
 import GraphsComponent from "./GraphsComponent";
 import UserTable from "./UserTable";
 const tabs = [

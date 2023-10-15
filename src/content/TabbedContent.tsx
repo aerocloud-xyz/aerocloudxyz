@@ -1,11 +1,7 @@
 import React, { useState, Fragment, useMemo } from "react";
 import {
-  EuiIcon,
   EuiTabs,
   EuiTab,
-  EuiSpacer,
-  EuiText,
-  EuiNotificationBadge,
 } from "@elastic/eui";
 import tabs from "./Tabs";
 

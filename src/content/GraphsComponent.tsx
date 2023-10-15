@@ -1,5 +1,5 @@
 import React from "react";
-import {EuiCard, EuiFlexItem, EuiIcon, EuiLoadingSpinner} from '@elastic/eui'
+import {EuiCard, EuiFlexItem, EuiIcon} from '@elastic/eui'
 interface GraphsComponentProps {}
 const GraphsComponent: React.FC<GraphsComponentProps> = () => {
 //elasticsearch_cluster_health_status{cluster="elastdocker-cluster",color="green"} 0
