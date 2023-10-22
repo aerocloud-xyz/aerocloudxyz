@@ -19,12 +19,15 @@ import {
   EuiText,
   useGeneratedHtmlId,
   useEuiTheme,
+  EuiButton,
+  EuiButtonIcon,
 } from "@elastic/eui";
 
 import alerts from "./alerts";
 import LoginForm from "./LoginForm";
 import UserData from "./content/UserData";
 import RegisterForm from "./RegisterForm";
+import HomePage from "./content/HomePage";
 import { AUTH_API } from "./constants";
 import { useCookies } from "react-cookie";
 
@@ -158,6 +161,8 @@ const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
 export default () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isShowingRegisterOrLoginForm, setIsShowingRegisterOrLoginForm] =
+    useState(false);
   const [updatedName, setUpdatedName] = useState("");
   const [Username, setUsername] = useState("Not Logged In");
   const [cookies, setCookie] = useCookies(["user"]);
@@ -167,7 +172,12 @@ export default () => {
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
-
+  const handleSwitchBetweenLoginAndHomePage = () => {
+    setIsShowingRegisterOrLoginForm(true);
+  };
+  const handleSwitchBetweenHomePageAndLogin = () => {
+    setIsShowingRegisterOrLoginForm(false);
+  };
   const handleLoadingRegisterForm = () => {
     console.log("Opening register form");
     setIsRegistered(true);
@@ -237,6 +247,21 @@ export default () => {
         </EuiHeaderSection>
         <EuiHeaderSection side="right">
           <EuiHeaderSectionItem>
+            <EuiButtonIcon
+              iconType="user"
+              aria-label="Login"
+              onClick={() => {
+                if (isShowingRegisterOrLoginForm == false) {
+                  handleSwitchBetweenLoginAndHomePage();
+                } else {
+                  handleSwitchBetweenHomePageAndLogin();
+                }
+              }}
+            >
+              Login
+            </EuiButtonIcon>
+          </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
             <HeaderUpdates />
           </EuiHeaderSectionItem>
           <EuiHeaderSectionItem>
@@ -272,13 +297,19 @@ export default () => {
       ) : (
         <div>
           {" "}
-          {isRegistered ? (
-            <RegisterForm />
+          {isShowingRegisterOrLoginForm ? (
+            <>
+              {isRegistered ? (
+                <RegisterForm />
+              ) : (
+                <LoginForm
+                  onLogin={handleLogin}
+                  onRegister={handleLoadingRegisterForm}
+                />
+              )}
+            </>
           ) : (
-            <LoginForm
-              onLogin={handleLogin}
-              onRegister={handleLoadingRegisterForm}
-            />
+            <HomePage/> //Homepage
           )}
         </div>
       )}
