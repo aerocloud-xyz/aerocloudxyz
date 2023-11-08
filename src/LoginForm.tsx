@@ -68,23 +68,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
           !!OLDCODE!! */
           localStorage.setItem("usertoken", accountData.token);
           setCookie('user', accountData.token);
-
-          //Get user data from auth server with the JWT token
-          const tokenResponse = await fetch(AUTH_API + "/login", {
-            method: "POST",
-            body: formData,
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          });
-          if(tokenResponse.ok) {
-            const userDataResponse = await tokenResponse.json()
-            const dateofcreation = userDataResponse.user.date;
-            const name = userDataResponse.user.name;
-            const role = userDataResponse.user.role;
-            onLogin(email, name, dateofcreation, role);
-          }
-          
+          secondStage();
         } else {
           // Handle error response
           setError("Login failed, check username and password");
@@ -97,6 +81,35 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
       setError("An error occurred while logging in.");
     }
   };
+  const secondStage = async () => {
+    if(localStorage.getItem("usertoken") === null) {
+      
+  } else {
+    const locstrgToken = localStorage.getItem("usertoken");
+
+      const form1Data = new URLSearchParams();
+        if(locstrgToken !== null) {
+          form1Data.append("token", locstrgToken);
+        }
+      //Get user data from auth server with the JWT token
+      const tokenResponse = await fetch(AUTH_API + "/verifytoken", {
+        method: "POST",
+        body: form1Data,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+      if(tokenResponse.ok) {
+  
+        const userDataResponse = await tokenResponse.json()
+        const dateofcreation = userDataResponse.user.date;
+        const name = userDataResponse.user.name;
+        const role = userDataResponse.user.role;
+        onLogin(email, name, dateofcreation, role);
+  
+      }
+    }
+  }
   return (
     <div className="login-form-container">
       {error && <p className="error-message">❗ {error}</p>}
