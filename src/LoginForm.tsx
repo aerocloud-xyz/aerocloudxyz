@@ -53,8 +53,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
         });
 
         if (response.ok) {
-          // Parse the JSON data from the response
+           // Parse the JSON data from the response
           const accountData = await response.json();
+          /* !!OLDCODE!!
           // Now you can access accountData properties
           const dateofcreation = accountData.user.date;
           const name = accountData.user.name;
@@ -63,7 +64,27 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
           localStorage.setItem("usertoken", accountData.token);
           // Save the authentication token to a cookie.
           setCookie('user', accountData.token);
-          onLogin(email, name, dateofcreation, role);
+          onLogin(email, name, dateofcreation, role); 
+          !!OLDCODE!! */
+          localStorage.setItem("usertoken", accountData.token);
+          setCookie('user', accountData.token);
+
+          //Get user data from auth server with the JWT token
+          const tokenResponse = await fetch(AUTH_API + "/login", {
+            method: "POST",
+            body: formData,
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          });
+          if(tokenResponse.ok) {
+            const userDataResponse = await tokenResponse.json()
+            const dateofcreation = userDataResponse.user.date;
+            const name = userDataResponse.user.name;
+            const role = userDataResponse.user.role;
+            onLogin(email, name, dateofcreation, role);
+          }
+          
         } else {
           // Handle error response
           setError("Login failed, check username and password");

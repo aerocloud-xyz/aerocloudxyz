@@ -172,6 +172,7 @@ export default () => {
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+  
   const handleSwitchBetweenLoginAndHomePage = () => {
     setIsShowingRegisterOrLoginForm(true);
   };
@@ -276,13 +277,14 @@ export default () => {
       </EuiHeader>
       <EuiSpacer />
       {isLoggedIn ? (
-        //Main page content, may be moved to separate file in future versions.
+        //User page content, may be moved to separate file in future versions.
         <>
           <UserData
             emailAddress={email}
             name={name}
             date={date}
             role={role}
+
             handleLogout={handleLogout}
             deleteUser={handleDeletion}
             style={{
