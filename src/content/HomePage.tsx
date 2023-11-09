@@ -13,7 +13,7 @@ interface HomePageProps {}
 const HomePage: React.FC<HomePageProps> = () => {
   const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
   const [selectedItemName, setSelectedItem] = useState("Time stuff");
-
+  const [isShowingNoteApp, setIsShowingNoteApp] = useState(false);
   const toggleOpenOnMobile = () => {
     setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
   };
@@ -33,18 +33,38 @@ const HomePage: React.FC<HomePageProps> = () => {
     };
   };
 
-  const sideNav: (any[] & EuiSideNavItemType<{ "aria-label": "Siebar"; mobileTitle: "Navigate within aerocloud"; toggleOpenOnMobile: () => void; isOpenOnMobile: boolean; items: any[]; style: { width: number; }; }>[]) | undefined = [
-/*     createItem("asdf", {
-      onClick: undefined,
-      icon: <EuiIcon type="users" />,
-      items: [
+  const handleSwitchToNoteApp = () => {
+    //show the note app in the window next to the sidebar
+    //perform some login and authentication checks yknow
+    if (isShowingNoteApp) {
+      setIsShowingNoteApp(false);
+    } else {
+      setIsShowingNoteApp(true);
+    }
+  };
+
+  const sideNav:
+    | (any[] &
+        EuiSideNavItemType<{
+          "aria-label": "Siebar";
+          mobileTitle: "Navigate within aerocloud";
+          toggleOpenOnMobile: () => void;
+          isOpenOnMobile: boolean;
+          items: any[];
+          style: { width: number };
+        }>[])
+    | undefined = [
+    createItem("AeroNote", {
+      onClick: () => handleSwitchToNoteApp(),
+      icon: <EuiIcon type="documents" />,
+      /*items: [
         createItem("asdf"),
         createItem("asdf"),
         createItem("asdf"),
         createItem("asdf"),
         createItem("asdf"),
-      ],
-    }) */
+      ],*/
+    }),
   ];
 
   return (
@@ -60,27 +80,36 @@ const HomePage: React.FC<HomePageProps> = () => {
             style={{ width: 192 }}
           />
         </EuiPageTemplate.Sidebar>
-        <EuiEmptyPrompt
-          iconType="cheer"
-          title={<h2>The homepage is coming soon</h2>}
-          color={"subdued"}
-          body={
-            <p>
-              To learn more check the GitHub repository by clicking the link
-              below:{" "}
-            </p>
-          }
-          footer={
-            <>
-              <EuiTitle size="xxs">
-                <h3>Github Repository</h3>
-              </EuiTitle>
-              <EuiLink href="https://github.com/antonio0806/UI" target="_blank">
-                Click here
-              </EuiLink>
-            </>
-          }
-        />
+        {isShowingNoteApp ? (
+          <>
+            <div>NoteAppGoesHere</div>
+          </>
+        ) : (
+          <EuiEmptyPrompt
+            iconType="cheer"
+            title={<h2>The homepage is coming soon</h2>}
+            color={"subdued"}
+            body={
+              <p>
+                To learn more check the GitHub repository by clicking the link
+                below:{" "}
+              </p>
+            }
+            footer={
+              <>
+                <EuiTitle size="xxs">
+                  <h3>Github Repository</h3>
+                </EuiTitle>
+                <EuiLink
+                  href="https://github.com/antonio0806/UI"
+                  target="_blank"
+                >
+                  Click here
+                </EuiLink>
+              </>
+            }
+          />
+        )}
       </EuiPageTemplate>
     </>
   );
