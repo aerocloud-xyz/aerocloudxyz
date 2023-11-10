@@ -9,8 +9,11 @@ import {
 } from "@elastic/eui";
 import { EuiSideNavItemType } from "@elastic/eui/src/components/side_nav/side_nav_types";
 import React, { useState } from "react";
-interface HomePageProps {}
-const HomePage: React.FC<HomePageProps> = () => {
+import AeroNote from "./AeroNote";
+interface HomePageProps {
+  LoggedIn: boolean;
+}
+const HomePage: React.FC<HomePageProps> = ({ LoggedIn }) => {
   const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
   const [selectedItemName, setSelectedItem] = useState("Time stuff");
   const [isShowingNoteApp, setIsShowingNoteApp] = useState(false);
@@ -82,7 +85,17 @@ const HomePage: React.FC<HomePageProps> = () => {
         </EuiPageTemplate.Sidebar>
         {isShowingNoteApp ? (
           <>
-            <div>NoteAppGoesHere</div>
+            {LoggedIn ? (
+              <>
+                <AeroNote isLoggedIn={LoggedIn}/>
+              </>
+            ) : (
+              <EuiEmptyPrompt
+                title={<h2>Not logged in!</h2>}
+                color={"subdued"}
+                body={<p>To use the AeroNote application you need to login</p>}
+              />
+            )}
           </>
         ) : (
           <EuiEmptyPrompt

@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <CookiesProvider defaultSetOptions={{ path: "/" }}>
       <EuiProvider colorMode="dark">
-        <App />
+          <App />
       </EuiProvider>
     </CookiesProvider>
   </React.StrictMode>

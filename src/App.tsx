@@ -160,6 +160,7 @@ const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
 
 export default () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isShowingUserProfile, setIsShowingUserProfile] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isShowingRegisterOrLoginForm, setIsShowingRegisterOrLoginForm] =
     useState(false);
@@ -172,7 +173,15 @@ export default () => {
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
-  
+
+  const handleSwitchToHomePageFromProfileBruv = () => {
+    if(isLoggedIn) {
+      setIsShowingUserProfile(false);
+      setIsShowingRegisterOrLoginForm(false);
+    } else {
+      console.log('??')
+    }
+  };
   const handleSwitchBetweenLoginAndHomePage = () => {
     setIsShowingRegisterOrLoginForm(true);
   };
@@ -194,6 +203,7 @@ export default () => {
   ) => {
     //handling UI changes
     setIsLoggedIn(true);
+    setIsShowingUserProfile(true);
     setUsername(name);
 
     //handling setting the variables for <UserData/>
@@ -206,6 +216,8 @@ export default () => {
     console.log("Logging out");
     localStorage.removeItem("usertoken");
     setUsername("Not Logged In");
+    setIsShowingUserProfile(false);
+    setIsShowingRegisterOrLoginForm(true);
     setIsLoggedIn(false);
   };
   const handleDeletion = async () => {
@@ -225,6 +237,7 @@ export default () => {
           console.log("Logging out & deleting");
           localStorage.removeItem("usertoken");
           setUsername("Not Logged In");
+          setIsShowingUserProfile(false);
           setIsLoggedIn(false);
         } else {
           console.log("Deletion failed!");
@@ -276,7 +289,7 @@ export default () => {
         </EuiHeaderSection>
       </EuiHeader>
       <EuiSpacer />
-      {isLoggedIn ? (
+      {isShowingUserProfile ? (
         //User page content, may be moved to separate file in future versions.
         <>
           <UserData
@@ -284,12 +297,12 @@ export default () => {
             name={name}
             date={date}
             role={role}
-
             handleLogout={handleLogout}
             deleteUser={handleDeletion}
+            handleSwitchToHomePageFromProfile={handleSwitchToHomePageFromProfileBruv}
             style={{
               width: "300px",
-              height: "500px",
+              height: "100 %",
               marginLeft: "25px",
               marginTop: "15px",
               textAlign: "center",
@@ -311,7 +324,8 @@ export default () => {
               )}
             </>
           ) : (
-            <HomePage/> //Homepage
+            
+            <HomePage LoggedIn={isLoggedIn}/> //Homepage
           )}
         </div>
       )}

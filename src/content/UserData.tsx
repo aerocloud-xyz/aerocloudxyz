@@ -14,6 +14,7 @@ interface UserDataProps {
   name: string;
   date: string;
   role: string;
+  handleSwitchToHomePageFromProfile: () => void;
   handleLogout: () => void;
   deleteUser: () => void;
   style: React.CSSProperties | undefined;
@@ -22,6 +23,7 @@ const UserData: React.FC<UserDataProps> = ({
   emailAddress,
   name,
   date,
+  handleSwitchToHomePageFromProfile,
   handleLogout,
   deleteUser,
   style,
@@ -36,7 +38,7 @@ const UserData: React.FC<UserDataProps> = ({
     }
   });
   return (
-    <EuiSplitPanel.Outer direction="row" style={{ height: "80 %" }}>
+    <EuiSplitPanel.Outer direction="row" style={{ height: "100 %" }}>
       <EuiSplitPanel.Inner grow={false}>
         <EuiSplitPanel.Outer direction="column" style={style}>
           <EuiSplitPanel.Inner>
@@ -71,6 +73,14 @@ const UserData: React.FC<UserDataProps> = ({
                 style={{ margin: "10px" }}
               >
                 Logout
+              </EuiButton>
+              <EuiButton
+                isDisabled={false}
+                fill
+                onClick={handleSwitchToHomePageFromProfile}
+                style={{ margin: "10px" }}
+              >
+                Back to homepage
               </EuiButton>
             </EuiTextAlign>
           </EuiSplitPanel.Inner>
