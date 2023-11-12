@@ -1,10 +1,11 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   formatDate,
   EuiBasicTable,
   EuiBasicTableColumn,
   EuiTableFieldDataColumnType,
+  EuiLoadingSpinner,
 } from "@elastic/eui";
 import { API } from '../constants';
 type User = {
@@ -15,6 +16,7 @@ type User = {
 };
 var users: User[] = [];
 export default () => {
+  const [isShowingLoadingScreen, setIsShowingLoadingScreen] = useState(true);
   useEffect(() => {
     users = [];
     const loadDataIntoTable = () => {
@@ -38,7 +40,7 @@ export default () => {
             const responseText = await response.text();
             const userArray = JSON.parse(responseText).data;
             //console.log(userArray);
-    
+            users = [];
             for (let i = 0; i < userArray.length; i++) {
               const user = userArray[i]; // Get the user data from the response
               users.push({
@@ -48,7 +50,7 @@ export default () => {
                 dateOfCreation: "test",
               });
             }
-            console.log(users);
+            setIsShowingLoadingScreen(false);
           } else {
             //nah
             users = [];
@@ -107,13 +109,31 @@ export default () => {
     };
   };
   return (
-    <EuiBasicTable
+    isShowingLoadingScreen ? (
+      //loading
+    <>
+    <div
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <EuiLoadingSpinner
+        size="xxl"
+        style={{ position: "absolute", textAlign: "center" }}
+      />
+    </div>
+  </>
+    ):(    <EuiBasicTable
       tableCaption="Users"
       items={users}
       rowHeader="Name"
       columns={columns}
       rowProps={getRowProps}
       cellProps={getCellProps}
-    />
+    />)
+
   );
 };
