@@ -53,6 +53,7 @@ export default () => {
             setIsShowingLoadingScreen(false);
           } else {
             //nah
+            console.log('nie zesraj sie!!!')
             users = [];
           }
         })

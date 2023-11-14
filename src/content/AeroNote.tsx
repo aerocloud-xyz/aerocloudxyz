@@ -31,26 +31,27 @@ const AeroNote: React.FC<AeroNoteProps> = ({ isLoggedIn }) => {
       }
     };
 
+    //ok bruv now i need to code up an API
     verifyToken();
   });
   return (
     <>
       {isDisplayingLoadingScreen ? (
         <>
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            <EuiLoadingSpinner
-              size="xxl"
-              style={{ position: "absolute", textAlign: "center" }}
-            />
-          </div>
-        </>
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <EuiLoadingSpinner
+            size="xxl"
+            style={{ position: "absolute", textAlign: "center" }}
+          />
+        </div>
+      </>
       ) : (
         <></>
       )}
