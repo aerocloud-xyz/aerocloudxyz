@@ -175,11 +175,11 @@ export default () => {
   const [role, setRole] = useState("");
 
   const handleSwitchToHomePageFromProfileBruv = () => {
-    if(isLoggedIn) {
+    if (isLoggedIn) {
       setIsShowingUserProfile(false);
       setIsShowingRegisterOrLoginForm(false);
     } else {
-      console.log('??')
+      console.log("??");
     }
   };
   const handleSwitchBetweenLoginAndHomePage = () => {
@@ -261,8 +261,23 @@ export default () => {
         </EuiHeaderSection>
         <EuiHeaderSection side="right">
           <EuiHeaderSectionItem>
+            {isLoggedIn ? (
+              <EuiButtonIcon
+                iconType="userAvatar"
+                aria-label="Login"
+                onClick={() => {
+                  setIsShowingUserProfile(true);
+                }}
+              >
+                View Profile
+              </EuiButtonIcon>
+            ) : (
+              <></>
+            )}
+          </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
             <EuiButtonIcon
-              iconType="user"
+              iconType="users"
               aria-label="Login"
               onClick={() => {
                 if (isShowingRegisterOrLoginForm == false) {
@@ -299,7 +314,9 @@ export default () => {
             role={role}
             handleLogout={handleLogout}
             deleteUser={handleDeletion}
-            handleSwitchToHomePageFromProfile={handleSwitchToHomePageFromProfileBruv}
+            handleSwitchToHomePageFromProfile={
+              handleSwitchToHomePageFromProfileBruv
+            }
             style={{
               width: "300px",
               height: "100 %",
@@ -324,8 +341,7 @@ export default () => {
               )}
             </>
           ) : (
-            
-            <HomePage LoggedIn={isLoggedIn}/> //Homepage
+            <HomePage LoggedIn={isLoggedIn} /> //Homepage
           )}
         </div>
       )}
