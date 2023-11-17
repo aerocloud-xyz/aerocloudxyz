@@ -331,7 +331,6 @@ export default () => {
       </EuiHeader>
       <EuiSpacer />
       {isShowingUserProfile ? (
-        //User page content, may be moved to separate file in future versions.
         <>
           <UserData
             emailAddress={email}
