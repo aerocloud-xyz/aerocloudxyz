@@ -261,7 +261,11 @@ export default () => {
           },
         });
         //operate on the response
-        
+        if(response.ok) {
+
+        } else {
+          console.log('Response is not 200 - please log in.')
+        }
       } catch (error) {
         console.log('Error whilst fetching response.')
       }
