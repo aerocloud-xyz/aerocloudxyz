@@ -10,7 +10,7 @@ import {
   EuiFieldPassword,
   EuiLink,
 } from "@elastic/eui";
-import "./LoginForm.css"; // Import your custom CSS file
+import "./LoginForm.css";
 import { AUTH_API } from "./constants";
 interface LoginFormProps {
   onLogin: (
