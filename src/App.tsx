@@ -247,6 +247,28 @@ export default () => {
       }
     }
   };
+  const authenticateWithExistingToken = async () => {
+    const token: string | null = localStorage.getItem("usertoken");
+    if(token !== null) {
+      const urlencoded = new URLSearchParams();
+      urlencoded.append("token", token);
+      try {
+        const response = await fetch(AUTH_API + "/verifytoken", {
+          method: "POST",
+          body: urlencoded,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        });
+        //operate on the response
+        
+      } catch (error) {
+        console.log('Error whilst fetching response.')
+      }
+    } else {
+      console.log('user token does not exist in localstorage - please log in');
+    }
+  };
   useEffect(() => {
     console.log("s0rcerer frontend, built by Antonio0806");
   });
