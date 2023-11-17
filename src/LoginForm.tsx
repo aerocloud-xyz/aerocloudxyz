@@ -25,10 +25,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [cookies, setCookie] = useCookies(['user']);
 
   const handleLogin = async () => {
     try {
+      setIsLoading(true);
       // Clear previous errors
       setError(null);
 
@@ -68,17 +70,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
           !!OLDCODE!! */
           localStorage.setItem("usertoken", accountData.token);
           setCookie('user', accountData.token);
+          setIsLoading(false);
           secondStage();
         } else {
           // Handle error response
           setError("Login failed, check username and password");
           console.error("Login failed");
+          setIsLoading(false);
         }
       } catch (error) {
         console.error("An error occurred:", error);
+        setError("Destination server unreachable.")
+        setIsLoading(false);
       }
     } catch (error) {
       setError("An error occurred while logging in.");
+      setIsLoading(false);
     }
   };
   const secondStage = async () => {
@@ -132,8 +139,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
           />
         </EuiFormRow>
         <EuiSpacer />
-        <EuiButton onClick={handleLogin} fullWidth fill>
-          Log In
+        <EuiButton onClick={handleLogin} fullWidth fill isLoading={isLoading}>
+          Log In         
         </EuiButton>
         <div className="register">
           <a href="/register">Forgot password?</a>
