@@ -1,6 +1,6 @@
 import { EuiCard, EuiIcon } from "@elastic/eui";
 import React, { useState, useEffect } from "react";
-import { SSH_API, AUTH_API } from "../constants";
+import { AUTH_API, WEBSSH_URL } from "../constants";
 interface ConsoleProps {
   render: boolean;
 }
@@ -45,7 +45,7 @@ const Console: React.FC<ConsoleProps> = ({ render }) => {
           title="SSH Session"
           width="100%"
           height="500px"
-          src={`https://localhost:2224/ssh/host/${SSH_API}?port=22`}
+          src={`${WEBSSH_URL}`}
         />
       ) : (
         <EuiCard
