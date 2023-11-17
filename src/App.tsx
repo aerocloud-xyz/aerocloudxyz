@@ -19,7 +19,6 @@ import {
   EuiText,
   useGeneratedHtmlId,
   useEuiTheme,
-  EuiButton,
   EuiButtonIcon,
 } from "@elastic/eui";
 
