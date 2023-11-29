@@ -9,6 +9,18 @@ import GraphsComponent from "./GraphsComponent";
 import UserTable from "./UserTable";
 const tabs = [
   {
+    id: "welcome--id",
+    disabled: false,
+    name: "Welcome!",
+    prepend: <EuiIcon type="infinity" />,
+    content: (
+      <Fragment>
+        <EuiSpacer /> 
+        <GraphsComponent />
+      </Fragment>
+    ),
+  },
+  {
     id: "console--id",
     name: "Console",
     append: <></>,
@@ -57,6 +69,6 @@ const tabs = [
         <GraphsComponent />
       </Fragment>
     ),
-  }
+  },
 ];
 export default tabs;
