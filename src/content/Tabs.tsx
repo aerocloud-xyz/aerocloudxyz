@@ -7,6 +7,7 @@ import Console from "./Console";
 import UserProfile from "./UserProfile";
 import GraphsComponent from "./GraphsComponent";
 import UserTable from "./UserTable";
+import WelcomeSite from "./WelcomeSite";
 const tabs = [
   {
     id: "welcome--id",
@@ -16,7 +17,7 @@ const tabs = [
     content: (
       <Fragment>
         <EuiSpacer /> 
-        <GraphsComponent />
+        <WelcomeSite />
       </Fragment>
     ),
   },
