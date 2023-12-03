@@ -37,7 +37,7 @@ const tabs = [
   },
   {
     id: "profile--id",
-    disabled: true,
+    disabled: false,
     name: "Profile",
     prepend: <EuiIcon type="userAvatar" />,
     content: (
