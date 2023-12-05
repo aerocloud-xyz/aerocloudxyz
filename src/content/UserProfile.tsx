@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { EuiButton, EuiMarkdownEditor, EuiSplitPanel } from "@elastic/eui";
+import { AERONOTE_API } from "../constants";
 interface UserProfileProps {}
 
 const UserProfile: React.FC<UserProfileProps> = () => {
@@ -8,7 +9,17 @@ const UserProfile: React.FC<UserProfileProps> = () => {
   `;
   const [editorContent, setEditorContent] = useState(initialContent)
   useEffect(() => {});
-  const updateMessage = () => {}
+  const updateMessage = () => {
+    fetch(`${AERONOTE_API}/setusermsg?token=${localStorage.getItem("usertoken")}&message=${editorContent}`, {
+      method: "GET",
+    })
+      .then(async (response) => {
+        console.log('cool');
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  }
   return (
     <>
       <EuiSplitPanel.Outer direction="row">
