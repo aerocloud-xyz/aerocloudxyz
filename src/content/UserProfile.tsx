@@ -10,7 +10,7 @@ const UserProfile: React.FC<UserProfileProps> = () => {
   const [editorContent, setEditorContent] = useState(initialContent)
   useEffect(() => {});
   const updateMessage = () => {
-    fetch(`${AERONOTE_API}/setusermsg?token=${localStorage.getItem("usertoken")}&message=${editorContent}`, {
+    fetch(`${AERONOTE_API}/api/setusermessage?token=${localStorage.getItem("usertoken")}&message=${'editorContentaa'}`, {
       method: "GET",
     })
       .then(async (response) => {
@@ -35,7 +35,7 @@ const UserProfile: React.FC<UserProfileProps> = () => {
             />
         </EuiSplitPanel.Inner>
         <EuiSplitPanel.Inner>
-          <EuiButton onClick={() => updateMessage()} fill>Update Message</EuiButton>
+          <EuiButton onClick={updateMessage} fill>Update Message</EuiButton>
         </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>
     </>
