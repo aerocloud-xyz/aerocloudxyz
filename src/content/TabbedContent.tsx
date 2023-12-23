@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, Fragment, useMemo } from "react";
 import {
