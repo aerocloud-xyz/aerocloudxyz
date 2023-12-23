@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import {
   EuiText,
@@ -31,12 +33,12 @@ const UserData: React.FC<UserDataProps> = ({
 }) => {
   const [brole, setRole] = useState(false);
   useEffect(() => {
-    if (role == "default") {
+    if (role === "default") {
       setRole(false);
-    } else if (role == "administrator") {
+    } else if (role === "administrator") {
       setRole(true);
     }
-  });
+  }, []);
   return (
     <EuiSplitPanel.Outer direction="row" style={{ height: "100 %" }}>
       <EuiSplitPanel.Inner grow={false}>

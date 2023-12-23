@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, Fragment, useMemo } from "react";
 import {
   EuiTabs,
@@ -5,8 +6,8 @@ import {
 } from "@elastic/eui";
 import tabs from "./Tabs";
 
-interface TabbedContent {}
-const TabbedContent: React.FC<TabbedContent> = ({}) => {
+interface TabbedContentProps {}
+const TabbedContent: React.FC<TabbedContentProps> = ({}) => {
   const [selectedTabId, setSelectedTabId] = useState("welcome--id");
   const selectedTabContent = useMemo(() => {
     return tabs.find((obj) => obj.id === selectedTabId)?.content;

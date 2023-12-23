@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useEffect } from "react";
@@ -305,7 +306,7 @@ export default () => {
               iconType="users"
               aria-label="Login"
               onClick={() => {
-                if (isShowingRegisterOrLoginForm == false) {
+                if (isShowingRegisterOrLoginForm === false) {
                   handleSwitchBetweenLoginAndHomePage();
                 } else {
                   handleSwitchBetweenHomePageAndLogin();

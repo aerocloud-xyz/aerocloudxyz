@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { EuiMarkdownFormat } from "@elastic/eui";
 import React, { useEffect, useState } from "react";
 interface WelcomeSiteProps {}
