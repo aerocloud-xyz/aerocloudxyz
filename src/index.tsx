@@ -1,9 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { EuiProvider } from "@elastic/eui";
 import { CookiesProvider } from "react-cookie";
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
