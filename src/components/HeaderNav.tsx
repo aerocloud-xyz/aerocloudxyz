@@ -21,13 +21,7 @@ import {
 } from "@elastic/eui";
 
 import alerts from "../alerts";
-import LoginForm from "./LoginForm";
-import UserData from "../content/UserData";
-import RegisterForm from "./RegisterForm";
-import HomePage from "../content/HomePage";
 import { AUTH_API } from "../constants";
-import { useCookies } from "react-cookie";
-import { GeneratedIdentifierFlags } from "typescript";
 import { useNavigate } from "react-router-dom";
 
 const HeaderUpdates = () => {
