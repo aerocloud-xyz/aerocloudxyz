@@ -9,7 +9,7 @@ import {
   EuiSpacer,
   EuiButton,
 } from "@elastic/eui";
-import { AUTH_API } from './constants';
+import { AUTH_API } from '../constants';
 interface RegisterFormProps {}
 const RegisterForm: React.FC<RegisterFormProps> = () => {
   const [error, setError] = useState<string | null>(null);

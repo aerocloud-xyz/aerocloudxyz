@@ -12,17 +12,12 @@ import {
   EuiLink,
 } from "@elastic/eui";
 import "./LoginForm.css";
-import { AUTH_API } from "./constants";
+import { AUTH_API } from "../constants";
+import { useNavigate } from "react-router-dom";
 interface LoginFormProps {
-  onLogin: (
-    email: string,
-    name: string,
-    dateOfCreation: string,
-    role: string
-  ) => void;
-  onRegister: () => void;
 }
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
+const LoginForm: React.FC<LoginFormProps> = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -91,7 +86,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
   };
   const secondStage = async () => {
     if(localStorage.getItem("usertoken") === null) {
-      
+      console.log('The usertoken is not saved.')
   } else {
     const locstrgToken = localStorage.getItem("usertoken");
 
@@ -113,8 +108,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
         const dateofcreation = userDataResponse.user.date;
         const name = userDataResponse.user.name;
         const role = userDataResponse.user.role;
-        onLogin(email, name, dateofcreation, role);
-  
+        //onLogin(email, name, dateofcreation, role);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('email', email);
+        localStorage.setItem('name', name);
+        localStorage.setItem('role', role);
+        localStorage.setItem('dateofcreation', dateofcreation);
+        navigate('/user/profile')
       }
     }
   }
@@ -145,7 +145,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onRegister }) => {
         </EuiButton>
         <div className="register">
           <a href="/register">Forgot password?</a>
-          <EuiLink onClick={onRegister}>
+          <EuiLink onClick={() => {navigate('/register')}}>
             Don't have an account? Register!
           </EuiLink>
         </div>
