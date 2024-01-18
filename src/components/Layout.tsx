@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import HeaderNav from "./HeaderNav";
 import { EuiPageTemplate } from "@elastic/eui";
 interface LayoutInterface {

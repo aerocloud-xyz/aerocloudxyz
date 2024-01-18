@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import UserProfile from "../content/UserProfile";
 import UserData from "../content/UserData";
 import handleLogout from "../utils/logout";
 import handleDeletion from "../utils/deleteAccount";
@@ -26,6 +25,7 @@ const Profile: React.FC<props> = () => {
       console.error("Some of the data doesnt exist, cant continue.");
       navigate('/')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

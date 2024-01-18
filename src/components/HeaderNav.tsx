@@ -14,7 +14,6 @@ import {
   useGeneratedHtmlId,
   useEuiTheme,
   EuiButtonIcon,
-  EuiButton,
   EuiKeyPadMenu,
   EuiKeyPadMenuItem,
 } from "@elastic/eui";

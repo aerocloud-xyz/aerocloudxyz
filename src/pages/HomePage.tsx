@@ -1,17 +1,11 @@
 import {
   EuiEmptyPrompt,
-  EuiIcon,
   EuiLink,
-  EuiPageTemplate,
-  EuiSideNav,
   EuiTitle,
-  slugify,
 } from "@elastic/eui";
-import { EuiSideNavItemType } from "@elastic/eui/src/components/side_nav/side_nav_types";
-import React, { useState } from "react";
-import AeroNote from "../components/AeroNote";
+import React from "react";
 interface HomePageProps {}
-const HomePage: React.FC<HomePageProps> = ({}) => {
+const HomePage: React.FC<HomePageProps> = () => {
 
   return (
     <>

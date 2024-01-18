@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
