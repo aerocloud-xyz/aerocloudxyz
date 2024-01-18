@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
-  EuiAvatar,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiHeader,
   EuiHeaderAlert,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
   EuiIcon,
-  EuiLink,
   EuiPopover,
   EuiPopoverFooter,
   EuiPopoverTitle,
@@ -19,6 +15,8 @@ import {
   useEuiTheme,
   EuiButtonIcon,
   EuiButton,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
 } from "@elastic/eui";
 
 import alerts from "../alerts";
@@ -149,11 +147,61 @@ const HeaderUpdates = () => {
     </EuiPopover>
   );
 }; */
+interface props {}
+const HeaderAppMenu: React.FC<props> = () => {
+  const headerAppPopoverId = useGeneratedHtmlId({ prefix: "headerAppPopover" });
+  const headerAppKeyPadMenuId = useGeneratedHtmlId({
+    prefix: "headerAppKeyPadMenu",
+  });
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onMenuButtonClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
+  const button = (
+    <EuiHeaderSectionItemButton
+      aria-controls={headerAppKeyPadMenuId}
+      aria-expanded={isOpen}
+      aria-haspopup="true"
+      aria-label="Apps menu with 1 new app"
+      onClick={onMenuButtonClick}
+    >
+      <EuiIcon type="apps" size="m" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  return (
+    <EuiPopover
+      id={headerAppPopoverId}
+      button={button}
+      isOpen={isOpen}
+      anchorPosition="downRight"
+      closePopover={closeMenu}
+    >
+      <EuiKeyPadMenu id={headerAppKeyPadMenuId} style={{ width: 288 }}>
+        <EuiKeyPadMenuItem label="AeroNote" onClick={() => {navigate('/aeronote')}}>
+          <EuiIcon type="document" size="l" />
+        </EuiKeyPadMenuItem>
+        <EuiKeyPadMenuItem label="Login" onClick={() => {navigate('/login')}}>
+          <EuiIcon type="user" size="l" />
+        </EuiKeyPadMenuItem>
+      </EuiKeyPadMenu>
+    </EuiPopover>
+  );
+};
+
 interface mainnnprops {}
 const HeaderNav: React.FC<mainnnprops> = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-    useState(false);
+  useState(false);
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const authenticateWithExistingToken = async () => {
     const token: string | null = localStorage.getItem("usertoken");
     if (token !== null) {
@@ -187,7 +235,7 @@ const HeaderNav: React.FC<mainnnprops> = () => {
     ) {
       setIsLoggedIn(true);
     }
-  });
+  }, []);
   return (
     <>
       <EuiSpacer />
@@ -203,9 +251,6 @@ const HeaderNav: React.FC<mainnnprops> = () => {
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
         <EuiHeaderSection side="right">
-        <EuiHeaderSection>
-          <EuiButton style={{verticalAlign: 'middle', display: 'table-cell', margin: 'auto'}} onClick={() => {navigate('/aeronote')}} isDisabled={false}> AeroNote </EuiButton >
-        </EuiHeaderSection>
           <EuiHeaderSectionItem>
             {isLoggedIn ? (
               <EuiButtonIcon
@@ -240,10 +285,12 @@ const HeaderNav: React.FC<mainnnprops> = () => {
               </EuiButtonIcon>
             </EuiHeaderSectionItem>
           )}
-
           <EuiHeaderSectionItem>
             <HeaderUpdates />
           </EuiHeaderSectionItem>
+          <EuiHeaderSection>
+            <HeaderAppMenu />
+          </EuiHeaderSection>
           <EuiHeaderSectionItem>
             {/*             <HeaderUserMenu
               username={Username}
