@@ -1,15 +1,27 @@
 import { EuiEmptyPrompt } from "@elastic/eui";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { centerVerticallyAndHorizontally } from '../utils/usefulStyles';
 
 interface props {}
 const AeroNotePage: React.FC<props> = () => {
   const [LoggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    const usertoken = localStorage.getItem('usertoken');
+    if(usertoken === '' || null) {
+      console.log('not logged in.');
+      setLoggedIn(false);
+    } else {
+      console.log('logged in.')
+      setLoggedIn(true);
+    }
+  }, [])
   return (
     <>
       {LoggedIn ? (
-        <></>
+        <>
+
+        </>
       ) : (
         <>
           <EuiEmptyPrompt
