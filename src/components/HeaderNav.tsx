@@ -18,6 +18,7 @@ import {
   useGeneratedHtmlId,
   useEuiTheme,
   EuiButtonIcon,
+  EuiButton,
 } from "@elastic/eui";
 
 import alerts from "../alerts";
@@ -151,21 +152,8 @@ const HeaderUpdates = () => {
 interface mainnnprops {}
 const HeaderNav: React.FC<mainnnprops> = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isShowingUserProfile, setIsShowingUserProfile] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isShowingRegisterOrLoginForm, setIsShowingRegisterOrLoginForm] =
     useState(false);
   const navigate = useNavigate();
-  const handleSwitchBetweenLoginAndHomePage = () => {
-    setIsShowingRegisterOrLoginForm(true);
-  };
-  const handleSwitchBetweenHomePageAndLogin = () => {
-    setIsShowingRegisterOrLoginForm(false);
-  };
-  const handleLoadingRegisterForm = () => {
-    console.log("Opening register form");
-    setIsRegistered(true);
-  };
   const authenticateWithExistingToken = async () => {
     const token: string | null = localStorage.getItem("usertoken");
     if (token !== null) {
@@ -215,6 +203,9 @@ const HeaderNav: React.FC<mainnnprops> = () => {
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
         <EuiHeaderSection side="right">
+        <EuiHeaderSection>
+          <EuiButton style={{verticalAlign: 'middle', display: 'table-cell', margin: 'auto'}} onClick={() => {navigate('/aeronote')}} isDisabled={false}> AeroNote </EuiButton >
+        </EuiHeaderSection>
           <EuiHeaderSectionItem>
             {isLoggedIn ? (
               <EuiButtonIcon

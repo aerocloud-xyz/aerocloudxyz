@@ -3,32 +3,12 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {
-  EuiAvatar,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiHeader,
-  EuiHeaderAlert,
-  EuiHeaderSection,
-  EuiHeaderSectionItem,
-  EuiHeaderSectionItemButton,
-  EuiIcon,
-  EuiLink,
-  EuiPopover,
-  EuiPopoverFooter,
-  EuiPopoverTitle,
-  EuiSpacer,
-  EuiText,
-  useGeneratedHtmlId,
-  useEuiTheme,
-  EuiButtonIcon,
-} from "@elastic/eui";
 import Main from "./components/Main";
 import LoginForm from "./components/LoginForm";
-import AeroNote from "./content/AeroNote";
 import Layout from "./components/Layout";
 import RegisterForm from "./components/RegisterForm";
 import Profile from "./components/Profile";
+import AeroNotePage from "./pages/AeroNotePage";
 
 export default () => {
   return (
@@ -40,6 +20,7 @@ export default () => {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/user/profile" element={<Profile />} />
+            <Route path="/aeronote" element={<AeroNotePage />} />
           </Routes>
         </Layout>
       </BrowserRouter>

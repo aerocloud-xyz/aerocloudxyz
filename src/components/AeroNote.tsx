@@ -16,10 +16,9 @@ import {
   EuiTableSortingType,
 } from "@elastic/eui";
 interface AeroNoteProps {
-  isLoggedIn: boolean;
 }
 
-const AeroNote: React.FC<AeroNoteProps> = ({ isLoggedIn }) => {
+const AeroNote: React.FC<AeroNoteProps> = () => {
   type Note = {
     id: string;
     dateCreated: string;
@@ -33,7 +32,6 @@ const AeroNote: React.FC<AeroNoteProps> = ({ isLoggedIn }) => {
   # Start writing your note here.
   `;
 
-  const [customHeader, setCustomHeader] = useState(true);
   const [isResponsive, setIsResponsive] = useState(true);
   const [editorContent, setEditorContent] = useState(initialContent);
   const [isDisplayingLoadingScreen, setIsDisplayingLoadingScreen] =

@@ -24,6 +24,7 @@ const Profile: React.FC<props> = () => {
       setRole(localRole);
     } else {
       console.error("Some of the data doesnt exist, cant continue.");
+      navigate('/')
     }
   }, []);
   return (

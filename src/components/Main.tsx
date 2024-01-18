@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import HomePage from "../content/HomePage";
+import HomePage from "../pages/HomePage";
 import UserData from "../content/UserData";
 interface props {}
 const Main: React.FC<props> = () => {
@@ -34,7 +34,7 @@ const Main: React.FC<props> = () => {
               textAlign: "center",
             }}
           /> */}
-        <HomePage LoggedIn={isLoggedIn} /> 
+        <HomePage /> 
     </>
   );
 };

@@ -1,15 +1,18 @@
-import React, { ReactNode } from 'react';
-import HeaderNav from './HeaderNav';
+import React, { ReactNode, useState } from "react";
+import HeaderNav from "./HeaderNav";
+import { EuiPageTemplate } from "@elastic/eui";
 interface LayoutInterface {
-    children: ReactNode
+  children: ReactNode;
 }
 const Layout: React.FC<LayoutInterface> = ({ children }) => {
-    return (
-      <>
+  return (
+    <>
+      <EuiPageTemplate panelled={undefined} offset={0} grow={true}>
         <HeaderNav />
         <main>{children}</main>
-      </>
-    )
-  }
-  
-  export default Layout
+      </EuiPageTemplate>
+    </>
+  );
+};
+
+export default Layout;
