@@ -2,6 +2,7 @@ import { EuiEmptyPrompt } from "@elastic/eui";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { centerVerticallyAndHorizontally } from '../utils/usefulStyles';
+import NotesTable from "./noteComponents/notesTable";
 
 interface props {}
 const AeroNotePage: React.FC<props> = () => {
@@ -20,7 +21,7 @@ const AeroNotePage: React.FC<props> = () => {
     <>
       {LoggedIn ? (
         <>
-
+          <NotesTable />
         </>
       ) : (
         <>
