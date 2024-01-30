@@ -48,7 +48,8 @@ export default () => {
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/user/profile" element={<Profile />} />
             <Route path="/aeronote" element={<AeroNotePage />} />
-            {//<Route path="*" element={<NotFoundComponent />} />}
+            {//<Route path="*" element={<NotFoundComponent />} />
+            }
           </Routes>
         </Layout>
       </BrowserRouter>
