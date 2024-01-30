@@ -62,7 +62,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
           localStorage.setItem("usertoken", accountData.token);
           // Save the authentication token to a cookie.
           setCookie('user', accountData.token);
-          onLogin(email, name, dateofcreation, role); 
+          onLogin(email, name, dateofcreation, role);
           !!OLDCODE!! */
           localStorage.setItem("usertoken", accountData.token);
           setCookie('user', accountData.token);
@@ -103,7 +103,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         },
       });
       if(tokenResponse.ok) {
-  
+
         const userDataResponse = await tokenResponse.json()
         const dateofcreation = userDataResponse.user.date;
         const name = userDataResponse.user.name;
@@ -141,7 +141,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         </EuiFormRow>
         <EuiSpacer />
         <EuiButton onClick={handleLogin} fullWidth fill isLoading={isLoading}>
-          Log In         
+          Log In
         </EuiButton>
         <div className="register">
           <a href="/register">Forgot password?</a>

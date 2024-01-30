@@ -306,7 +306,5 @@ const HeaderNav: React.FC<mainnnprops> = () => {
 export default HeaderNav;
 
 /* TODO:
-Instead of states add links and stuff
-Fix the application in general
 Add isAuthenticated checks everywhere
 Clean up the code */

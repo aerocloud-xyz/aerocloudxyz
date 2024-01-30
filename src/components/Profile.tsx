@@ -3,6 +3,7 @@ import UserData from "../content/UserData";
 import handleLogout from "../utils/logout";
 import handleDeletion from "../utils/deleteAccount";
 import { useNavigate } from "react-router-dom";
+import { AUTH_API } from "../constants";
 interface props {}
 const Profile: React.FC<props> = () => {
   const [name, setName] = useState("n/a");
@@ -11,21 +12,45 @@ const Profile: React.FC<props> = () => {
   const [role, setRole] = useState("n/a");
   const navigate = useNavigate();
   useEffect(() => {
-    const localEmail = localStorage.getItem("email");
-    const localName = localStorage.getItem("name");
-    const localRole = localStorage.getItem("role");
-    const localDateOfCreation = localStorage.getItem("dateofcreation");
+    const load = async () => {
+      const localToken = localStorage.getItem("usertoken");
+      const formData = new URLSearchParams();
+      if (localToken !== null) {
+        formData.append("token", localToken);
 
-    if (localEmail && localName && localRole && localDateOfCreation !== null) {
-      setName(localName);
-      setEmail(localEmail);
-      setDate(localDateOfCreation);
-      setRole(localRole);
-    } else {
-      console.error("Some of the data doesnt exist, cant continue.");
-      navigate('/')
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+        await fetch(AUTH_API + "/verifytoken", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }).then((response) => {
+          if (response.ok) {
+            const localEmail = localStorage.getItem("email");
+            const localName = localStorage.getItem("name");
+            const localRole = localStorage.getItem("role");
+            const localDateOfCreation = localStorage.getItem("dateofcreation");
+
+            if (
+              localEmail &&
+              localName &&
+              localRole &&
+              localDateOfCreation !== null
+            ) {
+              setName(localName);
+              setEmail(localEmail);
+              setDate(localDateOfCreation);
+              setRole(localRole);
+            } else {
+              console.error("Some of the data doesnt exist, cant continue.");
+              navigate("/");
+            }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+          }
+        });
+      }
+    };
+    load();
   }, []);
   return (
     <>
