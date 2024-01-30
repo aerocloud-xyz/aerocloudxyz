@@ -45,13 +45,12 @@ const Profile: React.FC<props> = () => {
               console.error("Some of the data doesnt exist, cant continue.");
               navigate("/");
             }
-            
+            // eslint-disable-next-line react-hooks/exhaustive-deps
           }
         });
       }
     };
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
