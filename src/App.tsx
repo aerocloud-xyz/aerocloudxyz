@@ -14,10 +14,8 @@ import NotFoundComponent from "./components/NotFoundComponent";
 
 export default () => {
   useEffect(() => {
-    const navigate  = useNavigate();
     const checkIfOldTokenExists = async () => {
       const locstrgToken = localStorage.getItem("usertoken");
-
       const form1Data = new URLSearchParams();
         if(locstrgToken !== null) {
           form1Data.append("token", locstrgToken);
@@ -31,7 +29,6 @@ export default () => {
         },
       });
       if(tokenResponse.ok) {
-           navigate('/user/profile')
       } else {
         localStorage.clear();
         window.location.reload();
