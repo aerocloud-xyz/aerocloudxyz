@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import UserData from "../content/UserData";
 import handleLogout from "../utils/logout";
