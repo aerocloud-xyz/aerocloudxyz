@@ -25,7 +25,7 @@ const HomePage: React.FC<HomePageProps> = () => {
               <h3>Github Repository</h3>
             </EuiTitle>
             <EuiLink href="https://github.com/antonio0806/UI" target="_blank">
-              Click here
+              Click here!
             </EuiLink>
           </>
         }
