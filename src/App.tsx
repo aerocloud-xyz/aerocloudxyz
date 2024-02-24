@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import AeroNotePage from "./pages/AeroNotePage";
 import { AUTH_API } from "./constants";
 import NotFoundComponent from "./components/NotFoundComponent";
+import MetricsPage from "./pages/MetricsPage";
 
 export default () => {
   useEffect(() => {
@@ -45,6 +46,7 @@ export default () => {
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/user/profile" element={<Profile />} />
             <Route path="/aeronote" element={<AeroNotePage />} />
+            <Route path="/metrics" element={<MetricsPage />} />
             {//<Route path="*" element={<NotFoundComponent />} />
             }
           </Routes>

@@ -183,12 +183,15 @@ const HeaderAppMenu: React.FC<props> = () => {
       anchorPosition="downRight"
       closePopover={closeMenu}
     >
-      <EuiKeyPadMenu id={headerAppKeyPadMenuId} style={{ width: 288 }}>
+      <EuiKeyPadMenu id={headerAppKeyPadMenuId} style={{ width: 300 }}>
         <EuiKeyPadMenuItem label="AeroNote" onClick={() => {navigate('/aeronote')}}>
           <EuiIcon type="document" size="l" />
         </EuiKeyPadMenuItem>
         <EuiKeyPadMenuItem label="Login" onClick={() => {navigate('/login')}}>
           <EuiIcon type="user" size="l" />
+        </EuiKeyPadMenuItem>
+        <EuiKeyPadMenuItem label="Metrics" onClick={() => {navigate('/')}}>
+          <EuiIcon type="visArea" size="l" />
         </EuiKeyPadMenuItem>
       </EuiKeyPadMenu>
     </EuiPopover>
