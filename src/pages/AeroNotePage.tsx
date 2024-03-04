@@ -1,27 +1,38 @@
 import { EuiEmptyPrompt } from "@elastic/eui";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { centerVerticallyAndHorizontally } from '../utils/usefulStyles';
+import { centerVerticallyAndHorizontally } from "../utils/usefulStyles";
 import NotesTable from "./noteComponents/notesTable";
+import NotesEditor from "./noteComponents/notesEditor";
 
-interface props {}
-const AeroNotePage: React.FC<props> = () => {
+interface props {
+  TableOrEditor: boolean;
+}
+const AeroNotePage: React.FC<props> = ({ TableOrEditor }) => {
   const [LoggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    const usertoken = localStorage.getItem('usertoken');
-    if(usertoken === '' || null) {
-      console.log('not logged in.');
+    const usertoken = localStorage.getItem("usertoken");
+    if (usertoken === "" || null) {
+      console.log("not logged in.");
       setLoggedIn(false);
     } else {
-      console.log('logged in.')
+      console.log("logged in.");
       setLoggedIn(true);
     }
-  }, [])
+  }, []);
   return (
     <>
       {LoggedIn ? (
         <>
-          <NotesTable />
+          {TableOrEditor ? (
+            <>
+              <NotesTable />
+            </>
+          ) : (
+            <>
+              <NotesEditor />
+            </>
+          )}
         </>
       ) : (
         <>
@@ -30,7 +41,7 @@ const AeroNotePage: React.FC<props> = () => {
             color={"subdued"}
             body={
               <p>
-                To use AeroNote you need to <Link to={'/login'}>Login</Link>
+                To use AeroNote you need to <Link to={"/login"}>Login</Link>
               </p>
             }
             style={centerVerticallyAndHorizontally}
