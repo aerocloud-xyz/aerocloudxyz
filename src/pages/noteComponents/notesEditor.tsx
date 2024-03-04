@@ -8,7 +8,6 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import {
-  $convertFromMarkdownString,
   $convertToMarkdownString,
   TRANSFORMERS,
 } from "@lexical/markdown";
@@ -22,6 +21,7 @@ const NotesEditor: React.FC<props> = () => {
   useEffect(() => {
     console.log(noteid);
     //verify token normally, if the note exists then load the initial state from the base64.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const onChangeFunc = (editorState: EditorState) => {
     editorState.read(() => {
