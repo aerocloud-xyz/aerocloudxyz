@@ -45,8 +45,9 @@ export default () => {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/user/profile" element={<Profile />} />
-            <Route path="/aeronote" element={<AeroNotePage />} />
+            <Route path="/aeronote" element={<AeroNotePage TableOrEditor={true}/>} />
             <Route path="/metrics" element={<MetricsPage />} />
+            <Route path="/aeronote/edit/:noteid" element={<AeroNotePage TableOrEditor={false}/>} />
             {//<Route path="*" element={<NotFoundComponent />} />
             }
           </Routes>
