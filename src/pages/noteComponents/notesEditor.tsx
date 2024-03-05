@@ -69,7 +69,16 @@ const NotesEditor: React.FC<props> = () => {
           }}
         >
           <RichTextPlugin
-            contentEditable={<ContentEditable className="editor-input" />}
+            contentEditable={<ContentEditable style={{
+              minHeight: '250px',
+              resize: 'none',
+              fontSize: '15px',
+              caretColor: 'rgb(5, 5, 5)',
+              position: 'relative',
+              tabSize: '1',
+              outline: '0',
+              padding: '15px 10px',
+            }} />}
             placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
           />
