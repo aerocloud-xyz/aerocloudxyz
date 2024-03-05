@@ -17,6 +17,10 @@ import TreeViewPlugin from "./editorPlugins/TreeViewPlugin";
 import { useEuiBackgroundColor } from "@elastic/eui";
 interface props {}
 const NotesEditor: React.FC<props> = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const encodeFromBase64 = (str: string):string => Buffer.from(str, 'binary').toString('base64');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const decodeFromBase64 = (str: string):string => Buffer.from(str, 'base64').toString('binary');
   let { noteid } = useParams();
   useEffect(() => {
     console.log(noteid);
