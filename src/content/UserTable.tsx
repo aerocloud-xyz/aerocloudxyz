@@ -79,9 +79,6 @@ export default () => {
     {
       field: "dateOfCreation",
       name: "Date of Creation",
-      dataType: "date",
-      render: (dateOfCreation: User["dateOfCreation"]) =>
-        formatDate(dateOfCreation, "dobLong"),
     },
     {
       field: "email",
