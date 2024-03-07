@@ -13,6 +13,7 @@ type Note = {
   owner: string;
   isPublic: string;
   isShort: string;
+  size: string;
   url: string;
   createdDate: string;
   updatedDate: string;
@@ -54,6 +55,7 @@ export default () => {
               const noteB = notesArray[i]; // Get the note data from the response
               notes.push({
                 id: noteB.id,
+                size: noteB.content.size,
                 owner: noteB.owner,
                 title: noteB.id,
                 url: noteB.content.url,
@@ -91,6 +93,10 @@ export default () => {
       field: "updatedDate",
       name: "Updated at",
       dataType: "date",
+    },
+    {
+      field: "size",
+      name: "Size"
     },
     {
       name: 'Actions',

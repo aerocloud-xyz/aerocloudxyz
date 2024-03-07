@@ -8,13 +8,7 @@
  */
 export default {
     code: 'editor-code',
-    heading: {
-      h1: 'editor-heading-h1',
-      h2: 'editor-heading-h2',
-      h3: 'editor-heading-h3',
-      h4: 'editor-heading-h4',
-      h5: 'editor-heading-h5',
-    },
+    heading: 'editor-heading-h1',
     image: 'editor-image',
     link: 'editor-link',
     list: {
