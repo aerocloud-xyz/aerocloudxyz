@@ -166,10 +166,10 @@ const DNSTable: React.FC<props> = () => {
     };
   };
   const getCellProps = (
-    user: Record,
+    record: Record,
     column: EuiTableFieldDataColumnType<Record>
   ) => {
-    const { id } = user;
+    const { id } = record;
     const { field } = column;
     return {
       className: "customCellClass",
