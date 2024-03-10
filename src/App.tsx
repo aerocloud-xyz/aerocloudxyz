@@ -12,6 +12,7 @@ import AeroNotePage from "./pages/AeroNotePage";
 import { AUTH_API } from "./constants";
 import NotFoundComponent from "./components/NotFoundComponent";
 import MetricsPage from "./pages/MetricsPage";
+import DNSTable from "./content/DNSTable";
 
 export default () => {
   useEffect(() => {
@@ -47,6 +48,7 @@ export default () => {
             <Route path="/user/profile" element={<Profile />} />
             <Route path="/aeronote" element={<AeroNotePage TableOrEditor={true}/>} />
             <Route path="/metrics" element={<MetricsPage />} />
+            <Route path="/dns" element={<DNSTable />} />
             <Route path="/aeronote/edit/:noteid" element={<AeroNotePage TableOrEditor={false}/>} />
             {//<Route path="*" element={<NotFoundComponent />} />
             }
