@@ -8,25 +8,25 @@ import {
 } from "@elastic/eui";
 import { useNavigate } from "react-router-dom";
 type Record = {
-id: string;
-zone_id: string;
-zone_name: string;
-name: string;
-type: string;
-content: string;
-proxiable: boolean;
-proxied: boolean;
-ttl: number;
-locked: boolean; 
-meta: {
-  auto_added: boolean;
-  managed_by_apps: boolean;
-  managed_by_argo_tunnel: boolean;
-}
-comment: string;
-tags: Array<string>;
-created_on: string;
-modified_on: string;
+  id: string;
+  zone_id: string;
+  zone_name: string;
+  name: string;
+  type: string;
+  content: string;
+  proxiable: boolean;
+  proxied: boolean;
+  ttl: number;
+  locked: boolean;
+  meta: {
+    auto_added: boolean;
+    managed_by_apps: boolean;
+    managed_by_argo_tunnel: boolean;
+  };
+  comment: string;
+  tags: Array<string>;
+  created_on: string;
+  modified_on: string;
 };
 /* type Note = {
   id: string;
@@ -38,60 +38,66 @@ var records: Record[] = [];
 interface props {}
 const DNSTable: React.FC<props> = () => {
   const [isShowingLoadingScreen, setIsShowingLoadingScreen] = useState(true);
+  //not safe rn
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = useNavigate();
   useEffect(() => {
     records = [];
     const loadDataIntoTable = () => {
       const userToken = localStorage.getItem("usertoken");
-      const formData = new URLSearchParams();
       if (userToken) {
-        formData.append("token", userToken);
+        const userRole = localStorage.getItem("role");
+        if (userRole === "administrator") {
+          fetch(
+            `https://dns.aerocloud.xyz/api/listrecords?token=${userToken}&type=CNAME`,
+            {
+              method: "GET",
+            }
+          )
+            .then(async (response) => {
+              if (response.ok) {
+                let recordsArray = [];
+                const responseText = await response.text();
+                recordsArray = JSON.parse(responseText).records;
+                records = [];
+                for (let i = 0; i < recordsArray.length; i++) {
+                  const recordB = recordsArray[i]; // Get the note data from the response
+                  records.push({
+                    id: recordB.id,
+                    zone_id: recordB.zone_id,
+                    zone_name: recordB.zone_name,
+                    name: recordB.name,
+                    type: recordB.type,
+                    content: recordB.content,
+                    proxiable: recordB.proxiable,
+                    proxied: recordB.proxied,
+                    ttl: recordB.ttl,
+                    locked: recordB.locked,
+                    meta: recordB.meta,
+                    comment: recordB.comment,
+                    tags: recordB.tags,
+                    created_on: recordB.created_on,
+                    modified_on: recordB.modified_on,
+                  });
+                }
+                setIsShowingLoadingScreen(false);
+              } else {
+                //nah
+                console.log("nie zesraj sie!!!");
+                records = [];
+              }
+            })
+            .catch((error) => {
+              console.error(
+                "There was a problem with the fetch operation:",
+                error
+              );
+            });
+        }
       } else {
         records = [];
         console.error("User token is missing or invalid.");
       }
-      fetch(
-        `https://dns.aerocloud.xyz/api/listrecords?token=${userToken}&type=CNAME`,
-        {
-          method: "GET",
-        }
-      )
-        .then(async (response) => {
-          if (response.ok) {
-            let recordsArray = [];
-            const responseText = await response.text();
-            recordsArray = JSON.parse(responseText).records;
-            records = [];
-            for (let i = 0; i < recordsArray.length; i++) {
-              const recordB = recordsArray[i]; // Get the note data from the response
-              records.push({
-                id: recordB.id,
-                zone_id: recordB.zone_id,
-                zone_name: recordB.zone_name,
-                name: recordB.name,
-                type: recordB.type,
-                content: recordB.content,
-                proxiable: recordB.proxiable,
-                proxied: recordB.proxied,
-                ttl: recordB.ttl,
-                locked: recordB.locked,
-                meta: recordB.meta,
-                comment: recordB.comment,
-                tags: recordB.tags,
-                created_on: recordB.created_on,
-                modified_on: recordB.modified_on,
-              });
-            }
-            setIsShowingLoadingScreen(false);
-          } else {
-            //nah
-            console.log('nie zesraj sie!!!')
-            records = [];
-          }
-        })
-        .catch((error) => {
-          console.error("There was a problem with the fetch operation:", error);
-        });
     };
     loadDataIntoTable();
   });
@@ -108,7 +114,7 @@ const DNSTable: React.FC<props> = () => {
     },
     {
       field: "proxied",
-      name: "Proxied?"
+      name: "Proxied?",
     },
     {
       field: "ttl",
@@ -116,7 +122,7 @@ const DNSTable: React.FC<props> = () => {
     },
     {
       field: "comment",
-      name: "Comment"
+      name: "Comment",
     },
     {
       field: "created_on",
@@ -129,21 +135,23 @@ const DNSTable: React.FC<props> = () => {
       dataType: "date",
     },
     {
-      name: 'Actions',
+      name: "Actions",
       actions: [
         {
-          name: 'Modify',
-          description: 'Modify this record',
-          type: 'icon',
-          icon: 'copy',
-          onClick: (record: Record) => {console.table(records)},
+          name: "Modify",
+          description: "Modify this record",
+          type: "icon",
+          icon: "copy",
+          onClick: (record: Record) => {
+            console.table(records);
+          },
         },
         {
-          name: 'Delete',
-          description: 'Delete this record',
-          type: 'icon',
-          icon: 'trash',
-          color: 'danger',
+          name: "Delete",
+          description: "Delete this record",
+          type: "icon",
+          icon: "trash",
+          color: "danger",
           onClick: (record: Record) => {},
         },
       ],
@@ -169,25 +177,25 @@ const DNSTable: React.FC<props> = () => {
       textOnly: true,
     };
   };
-  return (
-    isShowingLoadingScreen ? (
-      //loading
+  return isShowingLoadingScreen ? (
+    //loading
     <>
-    <div
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-      <EuiLoadingSpinner
-        size="xxl"
-        style={{ position: "absolute", textAlign: "center" }}
-      />
-    </div>
-  </>
-    ):(    <EuiBasicTable
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <EuiLoadingSpinner
+          size="xxl"
+          style={{ position: "absolute", textAlign: "center" }}
+        />
+      </div>
+    </>
+  ) : (
+    <EuiBasicTable
       tableCaption="Users"
       items={records}
       rowHeader="Name"
@@ -195,13 +203,12 @@ const DNSTable: React.FC<props> = () => {
       rowProps={getRowProps}
       cellProps={getCellProps}
       style={{
-        width: '95%',
-        textAlign: 'center',  
-        margin: 'auto',
-        boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+        width: "95%",
+        textAlign: "center",
+        margin: "auto",
+        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
       }}
-    />)
-
+    />
   );
 };
 export default DNSTable;
